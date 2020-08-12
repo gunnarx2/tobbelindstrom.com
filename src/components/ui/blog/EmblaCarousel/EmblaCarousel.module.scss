@@ -1,0 +1,223 @@
+@import '~styles/settings/variables';
+@import '~styles/tools/mixins/get-font-styles';
+@import '~styles/tools/mixins/respond-to';
+
+:global(body.dark-theme) .root {
+  --embla-slides-background: var(--color-delta);
+  --embla-dots-color: var(--color-epsilon);
+  --embla-arrows-color: var(--color-epsilon);
+}
+
+:global(body.light-theme) .root {
+  --embla-slides-background: var(--color-xi);
+  --embla-dots-color: var(--color-xi);
+  --embla-arrows-color: var(--color-beta);
+}
+
+.root {
+  margin: 0 -#{$container-padding-sides} map-get($spacings, lg);
+}
+
+.embla {
+  margin-bottom: calc(-#{(map-get($spacings, xl) / 2)} + 3px);
+}
+
+.inner {
+  position: relative;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    --box-shadow-size: #{map-get($spacings, sm)};
+    content: '';
+    position: absolute;
+    top: calc(var(--box-shadow-size) * -1);
+    bottom: calc(var(--box-shadow-size) * -1);
+    z-index: 1;
+    width: calc(12.5% - #{map-get($spacings, sm)});
+    pointer-events: none;
+    user-select: none;
+    transition: box-shadow map-get($durations, fast) map-get($easings, ease);
+
+    @include respond-to(xs) {
+      --box-shadow-size: #{map-get($spacings, md)};
+    }
+
+    @include respond-to(sm) {
+      --box-shadow-size: #{map-get($spacings, lg)};
+    }
+  }
+
+  &::before {
+    left: 0;
+    box-shadow: inset var(--box-shadow-size) 0 var(--box-shadow-size) 0 var(--color-alpha);
+  }
+
+  &::after {
+    right: 0;
+    box-shadow: inset calc(var(--box-shadow-size) * -1) 0 var(--box-shadow-size) 0 var(--color-alpha);
+  }
+}
+
+.viewport {
+  overflow: hidden;
+
+  &:global(.is-draggable) {
+    cursor: move;
+    cursor: grab;
+  }
+
+  &:global(.is-dragging) {
+    cursor: grabbing;
+  }
+}
+
+.container {
+  display: flex;
+  will-change: transform;
+  margin-left: -#{map-get($spacings, sm)};
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: 75%;
+  position: relative;
+  padding-left: map-get($spacings, sm);
+}
+
+.slideInner {
+  position: relative;
+  padding-bottom: 56.25%;
+}
+
+.slideContent {
+  background-color: var(--embla-slides-background);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: map-get($spacings, sm);
+  @include get-font-styles(oslo);
+  font-weight: 700;
+  user-select: none;
+  transition: background-color map-get($durations, fast) map-get($easings, ease);
+}
+
+.button {
+  background-color: transparent;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  width: calc(12.5% - #{map-get($spacings, sm)});
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  transition: fill map-get($durations, fast) map-get($easings, ease);
+
+  &:not(:disabled) {
+    cursor: pointer;
+    fill: var(--embla-arrows-color);
+  }
+
+  &::before {
+    content: '';
+    padding-bottom: 100%;
+    display: block;
+  }
+
+  svg {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+
+    @include respond-to(xs) {
+      width: 80%;
+      height: 80%;
+    }
+
+    @include respond-to(sm) {
+      width: 65%;
+      height: 65%;
+    }
+  }
+
+  &:hover,
+  :global(body.is-tabbing) &:focus {
+    fill: var(--color-primary);
+
+    @media (hover:none), (hover:on-demand) {
+      fill: var(--embla-arrows-color);
+    }
+  }
+}
+
+.buttonPrev {
+  left: 0;
+
+  svg {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+}
+
+.buttonNext {
+  right: 0;
+}
+
+.dots {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.dot {
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  width: map-get($spacings, md);
+  height: map-get($spacings, xl);
+  margin: 0 map-get($spacings, xs) * 0.75;
+  border: none;
+  display: flex;
+  align-items: center;
+
+  &::after {
+    content: '';
+    background-color: var(--embla-dots-color);
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    transition: background-color map-get($durations, fast) map-get($easings, ease);
+  }
+
+  &.isSelected::after {
+    background-color: var(--color-primary);
+  }
+
+  &.isSelected:hover::after {
+    @media (hover:none), (hover:on-demand) {
+      background-color: var(--color-primary) !important;
+    }
+  }
+
+  &:hover,
+  :global(body.is-tabbing) &:focus {
+    &::after {
+      background-color: var(--color-primary);
+
+      @media (hover:none), (hover:on-demand) {
+        background-color: var(--embla-dots-color);
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@import '~styles/settings/variables';
+
+.root {
+  position: relative;
+}
+
+.iconHolder {
+  $height: calc(2.66% + 2px);
+  position: absolute;
+  right: -#{map-get($spacings, md)};
+  bottom: -1px;
+  left: -#{map-get($spacings, md)};
+  padding-bottom: $height;
+  transition: background-color map-get($durations, fast) map-get($easings, ease);
+
+  .alphaBackgroundColor & {
+    background-color: var(--color-alpha);
+  }
+
+  .deltaBackgroundColor & {
+    background-color: var(--color-delta);
+  }
+
+  .etaBackgroundColor & {
+    background-color: var(--color-eta);
+  }
+
+  svg {
+    position: absolute;
+    top: -1px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: fill map-get($durations, fast) map-get($easings, ease);
+
+    .primaryFill & {
+      fill: var(--color-primary);
+    }
+
+    .alphaFill & {
+      fill: var(--color-alpha);
+    }
+
+    .etaFill & {
+      fill: var(--color-eta);
+    }
+  }
+}

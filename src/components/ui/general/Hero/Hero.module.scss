@@ -1,0 +1,36 @@
+@import '~styles/settings/variables';
+@import '~styles/tools/mixins/get-font-styles';
+@import '~styles/tools/mixins/respond-to';
+
+.root {
+  background-color: var(--color-primary);
+  color: var(--color-zeta);
+}
+
+.inner {
+  padding: (map-get($spacings, xl) * 1.75) 0;
+
+  .large & {
+    padding: (map-get($spacings, xl) * 2.25) 0;
+
+    @include respond-to(sm) {
+      padding: (map-get($spacings, xl) * 2.5) 0;
+    }
+  }
+}
+
+.title {
+  .large & {
+    @include get-font-styles(oslo);
+  }
+}
+
+.information {
+  @include get-font-styles(denver);
+}
+
+.paragraph {
+  p {
+    margin-bottom: 0;
+  }
+}

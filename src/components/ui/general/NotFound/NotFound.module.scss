@@ -1,0 +1,16 @@
+@import '~styles/settings/variables';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: var(--color-alpha);
+  transition: background-color map-get($durations, fast) map-get($easings, ease);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

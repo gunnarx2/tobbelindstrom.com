@@ -1,0 +1,35 @@
+@import '~styles/settings/variables';
+@import '~styles/tools/mixins/get-font-styles';
+
+.root {
+  padding: map-get($spacings, xl) * 1.5 0;
+  background-color: var(--color-delta);
+  border-bottom: 1px solid var(--color-iota);
+  transition: map-get($durations, fast) map-get($easings, ease);
+  transition-property: border-color, background-color;
+}
+
+.list {
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  margin-left: -#{map-get($spacings, sm) * 1.33};
+}
+
+.listItem {
+  width: 50%;
+  padding-left: map-get($spacings, sm) * 1.33;
+
+  &:nth-child(1) {
+    text-align: left;
+  }
+
+  &:nth-child(2) {
+    text-align: right;
+  }
+}
+
+.listHeading {
+  @include get-font-styles(rio);
+}

@@ -1,0 +1,23 @@
+@mixin placeholder() {
+  color: var(--color-gamma);
+  opacity: 1;
+  font-style: italic;
+  user-select: none;
+  transition: color map-get($durations, fast) map-get($easings, ease);
+}
+
+::-webkit-input-placeholder {
+  @include placeholder();
+}
+
+:-moz-placeholder {
+  @include placeholder();
+}
+
+::-moz-placeholder {
+  @include placeholder();
+}
+
+:-ms-input-placeholder {
+  @include placeholder();
+}

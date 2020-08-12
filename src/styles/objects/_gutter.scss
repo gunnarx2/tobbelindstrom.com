@@ -1,0 +1,10 @@
+$use-gutter: false;
+
+@if ($use-gutter) {
+  $gutter-sides: (
+    left: left,
+    bottom: bottom
+  );
+  $gutter-spacings: map-merge($spacings, ( clear: 0 ));
+  @include make-gutters('gutter', $gutter-spacings, $gutter-sides, $breakpoints);
+}

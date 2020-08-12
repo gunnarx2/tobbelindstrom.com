@@ -1,0 +1,56 @@
+@import '~styles/settings/variables';
+@import '~styles/tools/mixins/get-font-styles';
+@import '~styles/tools/mixins/respond-to';
+
+:global(body.dark-theme) .root {
+  --use-scroll-background: var(--color-delta);
+  --use-scroll-describe-color: var(--color-epsilon);
+}
+
+:global(body.light-theme) .root {
+  --use-scroll-background: var(--color-xi);
+  --use-scroll-describe-color: var(--color-beta);
+}
+
+.root {
+  background-color: var(--use-scroll-background);
+  border-radius: map-get($spacings, sm);
+  padding: map-get($spacings, lg);
+  user-select: none;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  transition: background-color map-get($durations, fast) map-get($easings, ease);
+}
+
+.right {
+  width: 50%;
+  padding-left: map-get($spacings, lg) / 2;
+
+  @include respond-to(sm) {
+    padding-right: map-get($spacings, lg);
+  }
+}
+
+.left {
+  width: 50%;
+  padding-right: map-get($spacings, lg) / 2;
+
+  @include respond-to(sm) {
+    padding-left: map-get($spacings, lg);
+  }
+}
+
+.describe {
+  @include get-font-styles(denver);
+  font-style: italic;
+  color: var(--use-scroll-describe-color);
+  transition: color map-get($durations, fast) map-get($easings, ease);
+}
+
+.scroll {
+  font-weight: 700;
+  @include get-font-styles(tokyo);
+  line-height: 1;
+  margin: map-get($spacings, xs) / 2 0;
+}

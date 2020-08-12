@@ -1,0 +1,20 @@
+@import '~styles/settings/variables';
+
+@mixin styled-links() {
+  font-weight: 600;
+  box-shadow: var(--color-primary) 0px -2px 0px 0px inset;
+  color: var(--color-primary);
+  transition: map-get($durations, fast) map-get($easings, ease);
+  transition-property: color, box-shadow;
+
+  &:hover,
+  :global(body.is-tabbing) &:focus {
+    color: var(--color-primary-darken);
+    box-shadow: var(--color-primary-darken) 0px -2px 0px 0px inset;
+
+    @media (hover:none), (hover:on-demand) {
+      box-shadow: var(--color-primary) 0px -2px 0px 0px inset;
+      color: var(--color-primary);
+    }
+  }
+}

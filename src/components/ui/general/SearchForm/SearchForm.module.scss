@@ -1,0 +1,91 @@
+@import '~styles/settings/variables';
+
+$button-sizes: map-get($spacings, xl) * 1.28;
+
+.root {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  max-width: 100%;
+  background-color: transparent;
+  border: none;
+  display: block;
+  border-bottom: 2px solid var(--color-epsilon);
+  color: var(--color-beta);
+  outline: none;
+  border-radius: 0;
+  padding: (map-get($spacings, xs) * 1.5) $button-sizes;
+  transition: map-get($durations, fast) map-get($easings, ease);
+  transition-property: border-color, color;
+
+  &:hover {
+    border-color: var(--color-primary);
+
+    @media (hover:none), (hover:on-demand) {
+      border-color: var(--color-epsilon);
+    }
+  }
+
+  &:focus {
+    border-color: var(--color-primary);
+  }
+}
+
+.submit {
+  left: 0;
+
+  svg {
+    width: 35%;
+    height: 35%;
+  }
+}
+
+.clear {
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: map-get($durations, fast) map-get($easings, ease);
+  transition-property: opacity, visibility;
+
+  .hasValue & {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  svg {
+    width: 35%;
+    height: 35%;
+  }
+}
+
+.submit,
+.clear {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: $button-sizes;
+  background-color: transparent;
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    fill: var(--color-epsilon);
+    transition: fill map-get($durations, fast) map-get($easings, ease);
+  }
+
+  &:hover,
+  :global(body.is-tabbing) &:focus {
+    svg {
+      fill: var(--color-primary);
+
+      @media (hover:none), (hover:on-demand) {
+        fill: var(--color-epsilon);
+      }
+    }
+  }
+}

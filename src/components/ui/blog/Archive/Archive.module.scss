@@ -1,0 +1,53 @@
+@import '~styles/settings/variables';
+@import '~styles/tools/mixins/respond-to';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: var(--color-eta);
+  transition: background-color map-get($durations, fast) map-get($easings, ease);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.search {
+  padding-top: map-get($spacings, xl) * 1.5;
+}
+
+.searchInput {
+  margin-top: -(map-get($spacings, xs) * 1.5);
+
+  @include respond-to(sm) {
+    padding: 0 map-get($spacings, lg);
+  }
+}
+
+.posts {
+  padding-top: map-get($spacings, sm) * 1.33;
+  padding-bottom: map-get($spacings, xl) * 1.5;
+  flex-grow: 1;
+}
+
+.feed {
+  list-style: none;
+  margin: 0;
+}
+
+.feedItem:not(:last-child) {
+  margin-bottom: map-get($spacings, sm) * 1.33;
+}
+
+.feedNothing {
+  font-style: italic;
+  text-align: center;
+
+  span {
+    font-weight: 700;
+  }
+}

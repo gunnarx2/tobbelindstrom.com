@@ -1,0 +1,10 @@
+@import '~styles/settings/variables';
+@import '~styles/tools/mixins/respond-to';
+
+.root {
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  padding-left: $container-padding-sides;
+  padding-right: $container-padding-sides;
+}

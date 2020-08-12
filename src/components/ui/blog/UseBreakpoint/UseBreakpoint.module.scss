@@ -1,0 +1,35 @@
+@import '~styles/settings/variables';
+@import '~styles/tools/mixins/get-font-styles';
+
+:global(body.dark-theme) .root {
+  --use-breakpoint-background: var(--color-delta);
+  --use-breakpoint-describe-color: var(--color-epsilon);
+}
+
+:global(body.light-theme) .root {
+  --use-breakpoint-background: var(--color-xi);
+  --use-breakpoint-describe-color: var(--color-beta);
+}
+
+.root {
+  background-color: var(--use-breakpoint-background);
+  border-radius: map-get($spacings, sm);
+  padding: map-get($spacings, lg);
+  user-select: none;
+  text-align: center;
+  transition: background-color map-get($durations, fast) map-get($easings, ease);
+}
+
+.describe {
+  @include get-font-styles(denver);
+  line-height: 1;
+  font-style: italic;
+  color: var(--use-breakpoint-describe-color);
+  transition: color map-get($durations, fast) map-get($easings, ease);
+}
+
+.breakpoint {
+  font-weight: 700;
+  @include get-font-styles(tokyo);
+  line-height: 1;
+}

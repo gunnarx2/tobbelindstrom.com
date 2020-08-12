@@ -1,0 +1,13 @@
+@import '~styles/settings/variables';
+
+.root {
+  background-color: var(--color-delta);
+  text-align: center;
+  padding: (map-get($spacings, sm) * 1.1) 0;
+  font-style: italic;
+  transition: background-color map-get($durations, fast) map-get($easings, ease);
+}
+
+.inner {
+  padding-bottom: env(safe-area-inset-bottom);
+}

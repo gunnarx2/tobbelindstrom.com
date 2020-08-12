@@ -1,0 +1,61 @@
+@import '~styles/settings/variables';
+@import '~styles/tools/mixins/get-font-styles';
+
+.root {
+  display: block;
+  color: var(--color-beta);
+  background-color: var(--color-theta);
+  border-radius: map-get($spacings, sm);
+  padding: map-get($spacings, lg);
+  transition: map-get($durations, fast) map-get($easings, ease);
+  transition-property: box-shadow, transform, background-color, color;
+
+  :global(body.dark-theme) & {
+    &:hover,
+    &:focus {
+      box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 3px -2px, rgba(0, 0, 0, 0.25) 0px 3px 4px 0px, rgba(0, 0, 0, 0.125) 0px 1px 8px 0px;
+
+      @media (hover:none), (hover:on-demand) {
+        box-shadow: none;
+      }
+    }
+  }
+
+  :global(body.light-theme) & {
+    box-shadow: rgba(47, 39, 61, 0.05) 0px 3px 10px;
+
+    &:hover,
+    &:focus {
+      box-shadow: rgba(47, 39, 61, 0.1) 0px 6px 10px;
+
+      @media (hover:none), (hover:on-demand) {
+        box-shadow: rgba(47, 39, 61, 0.05) 0px 3px 10px;
+      }
+    }
+  }
+
+  :global(body.dark-theme) &:hover,
+  :global(body.light-theme) &:hover,
+  :global(body.is-tabbing) &:focus {
+    transform: translateY(-3px);
+
+    @media (hover:none), (hover:on-demand) {
+      transform: translateY(0);
+    }
+  }
+}
+
+.title {
+  @include get-font-styles(berlin);
+}
+
+.spoiler {
+  @include get-font-styles(denver);
+  margin-bottom: map-get($spacings, xs);
+}
+
+.information {
+  @include get-font-styles(helsinki);
+  color: var(--color-epsilon);
+  transition: color map-get($durations, fast) map-get($easings, ease);
+}

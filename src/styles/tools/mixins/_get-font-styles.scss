@@ -1,0 +1,17 @@
+@mixin get-font-styles($type) {
+  @each $key, $value in map-get($font-styles, $type) {
+    @if (type-of($value) != map) {
+      #{$key}: $value;
+    } @else {
+      @each $breakpoint, $style in $value {
+        @if ($breakpoint == 'root') {
+          #{$key}: $style;
+        } @else {
+          @include respond-to(#{$breakpoint}) {
+            #{$key}: $style;
+          }
+        }
+      }
+    }
+  }
+}

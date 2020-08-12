@@ -1,0 +1,124 @@
+@import '~styles/settings/variables';
+@import '~styles/tools/mixins/get-font-styles';
+
+:global(body.dark-theme) .root {
+  --resize-observer-background: var(--color-delta);
+}
+
+:global(body.light-theme) .root {
+  --resize-observer-background: var(--color-xi);
+}
+
+.root {
+  position: relative;
+  padding-bottom: 75%;
+  user-select: none;
+  margin-bottom: map-get($spacings, sm) * 1.33;
+}
+
+.box {
+  position: absolute;
+  transform: translate3d(0,0,0);
+  backface-visibility: hidden;
+  will-change: width, height;
+  transition: map-get($durations, sloth) map-get($easings, ease);
+  transition-property: width, height;
+
+  &:nth-child(1) {
+    top: 0;
+    left: 0;
+
+    &.number1 {
+      width: 49.99%;
+      height: 49.99%;
+    }
+
+    &.number2 {
+      width: 66.66%;
+      height: 33.33%;
+    }
+  }
+
+  &:nth-child(2) {
+    top: 0;
+    right: 0;
+
+    &.number1 {
+      width: 50%;
+      height: 50%;
+    }
+
+    &.number2 {
+      width: 33.33%;
+      height: 33.33%;
+    }
+  }
+
+  &:nth-child(3) {
+    bottom: 0;
+    left: 0;
+
+    &.number1 {
+      width: 49.99%;
+      height: 49.99%;
+    }
+
+    &.number2 {
+      width: 33.33%;
+      height: 66.66%;
+    }
+  }
+
+  &:nth-child(4) {
+    right: 0;
+    bottom: 0;
+
+    &.number1 {
+      width: 49.99%;
+      height: 49.99%;
+    }
+
+    &.number2 {
+      width: 66.66%;
+      height: 66.66%;
+    }
+  }
+}
+
+.inner {
+  $gutters: map-get($spacings, xs) * 0.75;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--resize-observer-background);
+  border-radius: map-get($spacings, xs);
+  @include get-font-styles(moscow);
+  font-weight: 700;
+  transition: background-color map-get($durations, fast) map-get($easings, ease);
+
+  .box:nth-child(1) & {
+    right: $gutters;
+    bottom: $gutters;
+  }
+
+  .box:nth-child(2) & {
+    bottom: $gutters;
+    left: $gutters;
+  }
+
+  .box:nth-child(3) & {
+    top: $gutters;
+    right: $gutters;
+  }
+
+  .box:nth-child(4) & {
+    top: $gutters;
+    left: $gutters;
+  }
+}

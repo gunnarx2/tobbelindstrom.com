@@ -1,0 +1,7 @@
+@import '~styles/tools/mixins/styled-links';
+
+.root {
+  a {
+    @include styled-links();
+  }
+}

@@ -1,0 +1,128 @@
+$use-grid: false;
+
+@if ($use-grid) {
+  // Root
+  .grid {
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  // Reverse items
+  .grid--reverse {
+    flex-direction: row-reverse;
+  }
+
+  // Space between items
+  .grid--between {
+    justify-content: space-between;
+  }
+
+  // Space around items
+  .grid--around {
+    justify-content: space-around;
+  }
+
+  // Align items to the left
+  .grid--start {
+    justify-content: flex-start;
+  }
+
+  // Align items in the center
+  .grid--center {
+    justify-content: center;
+  }
+
+  // Align items to the right
+  .grid--end {
+    justify-content: flex-end;
+  }
+
+  // Align items to the top
+  .grid--top {
+    align-items: flex-start;
+  }
+
+  // Align items in the middle
+  .grid--middle {
+    align-items: center;
+  }
+
+  // Align items to the bottom
+  .grid--bottom {
+    align-items: flex-end;
+  }
+
+  // Item
+  .grid__item {
+    flex: 0 0 auto;
+    position: relative;
+  }
+
+  // Align item to the top
+  .grid__item--top {
+    align-self: flex-start;
+  }
+
+  // Align item in the middle
+  .grid__item--middle {
+    align-self: center;
+  }
+
+  // Align item to the bottom
+  .grid__item--bottom {
+    align-self: flex-end;
+  }
+
+  // Fixed item witdth
+  .grid__item--fixed {
+    flex: initial;
+  }
+
+  // Fill items or item
+  .grid--fill .grid__item:not([class*='grid__item--width']):not([class*='grid__item--fixed']),
+  .grid__item--fill {
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+  }
+
+  // Position first
+  .grid__item--first {
+    order: -1;
+  }
+
+  // Position last
+  .grid__item--last {
+    order: 1;
+  }
+
+  // Create width and offset fractions
+  $fractions: (
+    '1/12': 1/12,
+    '2/12': 2/12,
+    '3/12': 3/12,
+    '4/12': 4/12,
+    '5/12': 5/12,
+    '6/12': 6/12,
+    '7/12': 7/12,
+    '8/12': 8/12,
+    '9/12': 9/12,
+    '10/12': 10/12,
+    '11/12': 11/12,
+    '12/12': 12/12
+  );
+  @include make-offsets(
+    'grid__item--width',
+    $fractions,
+    $breakpoints,
+    'width'
+  );
+  @include make-offsets(
+    'grid__item--offset',
+    $fractions,
+    $breakpoints,
+    'margin-left'
+  );
+}

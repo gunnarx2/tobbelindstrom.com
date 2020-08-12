@@ -1,0 +1,30 @@
+@mixin generate-offsets($action, $fractions, $breakpoint: false, $property: '') {
+  $breakpoint-class: '';
+  $class: $action + '-';
+
+  @if ($breakpoint) {
+    $modifier: str-replace('@#{$breakpoint}', '@', '\\@');
+    $breakpoint-class: $modifier;
+  }
+
+  @each $fraction-key, $fraction-value in $fractions {
+    $modifier: str-replace($fraction-key, '/', '\\/');
+    $offset-value: (($fraction-value * 100) * 1%);
+
+    .#{$class}#{$modifier}#{$breakpoint-class} {
+      #{$property}: $offset-value;
+    }
+  }
+}
+
+@mixin make-offsets($action, $fractions, $breakpoints: false, $property: '') {
+  @include generate-offsets($action, $fractions, false, $property);
+
+  @if ($breakpoints) {
+    @each $breakpoint-key, $breakpoint-value in $breakpoints {
+      @include respond-to($breakpoint-key) {
+        @include generate-offsets($action, $fractions, $breakpoint-key, $property);
+      }
+    }
+  }
+}

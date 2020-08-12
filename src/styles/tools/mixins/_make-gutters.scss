@@ -1,0 +1,32 @@
+@mixin generate-gutters($class, $sizes, $sides, $breakpoint: false) {
+  $breakpoint-class: '';
+
+  @if ($breakpoint) {
+    $modifier: str-replace('@#{$breakpoint}', '@', '\\@');
+    $breakpoint-class: $modifier;
+  }
+
+  @each $size-key, $size-value in $sizes {
+    @each $side-key, $side-value in $sides {
+      .#{$class}-#{$side-key}-#{$size-key}#{$breakpoint-class} {
+        margin-#{$side-value}: -$size-value;
+      }
+
+      .#{$class}-#{$side-key}-#{$size-key}#{$breakpoint-class} > .#{$class}__item {
+        padding-#{$side-value}: $size-value;
+      }
+    }
+  }
+}
+
+@mixin make-gutters($class, $sizes, $sides: (left: left), $breakpoints: false) {
+  @include generate-gutters($class, $sizes, $sides);
+
+  @if ($breakpoints) {
+    @each $breakpoint-key, $breakpoint-value in $breakpoints {
+      @include respond-to($breakpoint-key) {
+        @include generate-gutters($class, $sizes, $sides, $breakpoint-key);
+      }
+    }
+  }
+}

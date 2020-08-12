@@ -1,0 +1,198 @@
+@import '~styles/tools/mixins/get-font-styles';
+@import '~styles/tools/mixins/respond-to';
+
+body.dark-theme {
+  .gatsby-highlight,
+  code {
+    --prism-background-block: var(--color-delta);
+    --prism-background-inline: var(--prism-background-block);
+    --prism-background-highlight: var(--color-lambda);
+
+    --prism-color-block: var(--color-mu);
+    --prism-color-variable: var(--color-xi);
+    --prism-color-property: var(--color-omicron);
+    --prism-color-comment: var(--color-epsilon);
+
+    --prism-scroll-thumb: var(--color-primary);
+    --prism-scroll-track: var(--color-epsilon);
+    --prism-scroll-size: 4px;
+  }
+}
+
+body.light-theme {
+  .gatsby-highlight,
+  code {
+    --prism-background-block: var(--color-delta);
+    --prism-background-inline: var(--color-lambda);
+    --prism-background-highlight: var(--color-lambda);
+
+    --prism-color-block: var(--color-mu);
+    --prism-color-variable: var(--color-primary-lighten);
+    --prism-color-property: var(--color-omicron);
+    --prism-color-comment: var(--color-epsilon);
+
+    --prism-scroll-thumb: var(--color-primary-lighten);
+    --prism-scroll-track: var(--color-xi);
+    --prism-scroll-size: 4px;
+  }
+}
+
+@mixin prism() {
+  :global {
+    .gatsby-highlight {
+      position: relative;
+      overflow: hidden;
+      background-color: var(--prism-background-block);
+      margin: 0 -#{$container-padding-sides} map-get($spacings, sm) * 1.33;
+      transition: background-color map-get($durations, fast) map-get($easings, ease);
+
+      @include respond-to(sm) {
+        border-radius: map-get($spacings, sm);
+      }
+
+      &::before,
+      &::after {
+        --box-shadow-size: #{map-get($spacings, sm)};
+        content: '';
+        position: absolute;
+        top: calc(var(--box-shadow-size) * -1);
+        bottom: calc(var(--box-shadow-size) * -1);
+        width: $container-padding-sides;
+        z-index: 1;
+        pointer-events: none;
+        user-select: none;
+        transition: box-shadow map-get($durations, fast) map-get($easings, ease);
+      }
+
+      &::before {
+        left: 0;
+        box-shadow: inset var(--box-shadow-size) 0 var(--box-shadow-size) 0 var(--prism-background-block);
+      }
+
+      &::after {
+        right: 0;
+        box-shadow: inset calc(var(--box-shadow-size) * -1) 0 var(--box-shadow-size) 0 var(--prism-background-block);
+      }
+    }
+
+    .gatsby-highlight-code-line {
+      background-color: var(--prism-background-highlight);
+      display: block;
+      margin: 0 -#{$container-padding-sides};
+      padding: 0 #{$container-padding-sides};
+      transition: background-color map-get($durations, fast) map-get($easings, ease);
+    }
+
+    code {
+      background-color: var(--prism-background-inline);
+      padding: .15em .4em .25em .4em;
+      border-radius: .4em;
+      @include get-font-styles(helsinki);
+      transition: background-color map-get($durations, fast) map-get($easings, ease);
+    }
+
+    pre {
+      outline: none;
+      overflow: auto;
+      margin-bottom: 0;
+
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--prism-scroll-thumb);
+        transition: background-color map-get($durations, fast) map-get($easings, ease);
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: var(--prism-scroll-track);
+        transition: background-color map-get($durations, fast) map-get($easings, ease);
+      }
+
+      &::-webkit-scrollbar {
+        width: var(--prism-scroll-size);
+        height: var(--prism-scroll-size);
+        transition: map-get($durations, fast) map-get($easings, ease);
+        transition-property: width, height;
+      }
+
+      code {
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        tab-size: 2;
+        -moz-tab-size: 2;
+        hyphens: none;
+        background-color: transparent;
+        margin: 0;
+        overflow: initial;
+        float: left;
+        min-width: 100%;
+        color: var(--prism-color-block);
+        padding: $container-padding-sides;
+        @include get-font-styles(helsinki);
+        transition: color map-get($durations, fast) map-get($easings, ease);
+      }
+
+      .token.comment,
+      .token.prolog,
+      .token.doctype,
+      .token.cdata {
+        color: var(--prism-color-comment);
+        transition: color map-get($durations, fast) map-get($easings, ease);
+      }
+
+      .token.class-name,
+      .token.boolean,
+      .token.number,
+      .token.property,
+      .token.tag,
+      .token.constant,
+      .token.attr-value,
+      .token.keyword,
+      .token.control,
+      .token.directive,
+      .token.unit {
+        color: var(--prism-color-property);
+        transition: color map-get($durations, fast) map-get($easings, ease);
+      }
+
+      .token.string,
+      .token.function:not(.function-variable),
+      .token.selector,
+      .token.attr-name,
+      .token.entity,
+      .token.url,
+      .language-css .token.string,
+      .style .token.string,
+      .token.statement,
+      .token.regex,
+      .token.atrule,
+      .token.placeholder,
+      .token.variable {
+        color: var(--prism-color-variable);
+        transition: color map-get($durations, fast) map-get($easings, ease);
+      }
+
+      .token.namespace {
+        opacity: .75;
+      }
+
+      .token.deleted {
+        text-decoration: line-through;
+      }
+
+      .token.italic {
+        font-style: italic;
+      }
+
+      .token.important,
+      .token.bold {
+        font-weight: 600;
+      }
+
+      .token.entity {
+        cursor: help;
+      }
+    }
+  }
+}

@@ -1,0 +1,135 @@
+html {
+  font-size: 62.5%;
+  min-height: 100%;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+  @include respond-to(sm) {
+    font-size: 78.125%;
+  }
+}
+
+body {
+  font-family: map-get($font-families, source-sans-pro);
+  line-height: map-get($line-heights, base);
+  @include get-font-styles(kramfors);
+  word-break: break-word;
+  background-color: var(--color-primary);
+  color: var(--color-beta);
+  transition: map-get($durations, fast) map-get($easings, ease);
+  transition-property: color, transform;
+
+  &.konami-code {
+    transform: rotateY(180deg);
+  }
+
+  &::after {
+    position: absolute;
+    left: -1337px;
+    visibility: hidden;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0;
+    font-size: 0;
+    z-index: -1;
+
+    @each $breakpoint-key, $breakpoint-value in $breakpoints {
+      @if ($breakpoint-key == 'xs') {
+        content: 'xs';
+      } @else {
+        @include respond-to($breakpoint-key) {
+          content: '#{$breakpoint-key}';
+        }
+      }
+    }
+  }
+}
+
+hr {
+  border: 0;
+  border-bottom: 2px solid var(--color-beta);
+  transition: border-color map-get($durations, fast) map-get($easings, ease);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: map-get($spacings, xs) / 1.5;
+}
+
+hgroup,
+ul,
+ol,
+dl,
+blockquote,
+p,
+address,
+table,
+fieldset,
+figure,
+pre,
+hr {
+  margin-bottom: map-get($spacings, sm) * 1.33;
+}
+
+ul,
+ol,
+dd {
+  margin-left: map-get($spacings, xl);
+}
+
+blockquote {
+  $border-width: 4px;
+  position: relative;
+  font-style: italic;
+  padding: map-get($spacings, md) map-get($spacings, lg) map-get($spacings, md) calc(#{map-get($spacings, lg)} + #{$border-width});
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: $border-width;
+    border-radius: $border-width / 2;
+    background-color: var(--color-primary);
+  }
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: map-get($font-families, roboto-mono);
+}
+
+a,
+area,
+button,
+[role='button'],
+input:not([type=range]),
+label,
+select,
+summary,
+textarea {
+  touch-action: manipulation;
+}
+
+body.is-tabbing {
+  a:focus,
+  input:focus,
+  button:focus,
+  label:focus,
+  select:focus,
+  textarea:focus,
+  [role='button']:focus,
+  [tabindex='0']:focus {
+    outline: 5px auto var(--color-is-tabbing) !important;
+  }
+}

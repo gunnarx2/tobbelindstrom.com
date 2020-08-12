@@ -1,0 +1,5 @@
+User-Agent: *
+Disallow:
+Allow: /
+Sitemap: https://tobbelindstrom.com/sitemap.xml
+Host: https://tobbelindstrom.com
