@@ -14,5 +14,6 @@
   "useWindowSize",
   "useBreakpoint",
   "useClickOutside",
-  "useScroll"
+  "useScroll",
+  "cancellation-with-switchMap-and-custom-promises"
 ]
