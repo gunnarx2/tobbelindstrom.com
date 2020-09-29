@@ -43,8 +43,8 @@ const ResizeObserver = () => {
 
   return (
     <div className={styles.root}>
-      {[0, 1, 2, 3].map((index) => (
-        <Item key={index} number={number} />
+      {[0, 1, 2, 3].map((key) => (
+        <Item key={key} number={number} />
       ))}
     </div>
   );

@@ -56,7 +56,7 @@ const EmblaCarousel = () => {
         <div className={styles.dots}>
           {scrollSnaps.map((snap, index) => (
             <DotButton
-              key={index}
+              key={snap}
               index={index}
               selected={index === selectedIndex}
               onClick={() => scrollTo(index)}
