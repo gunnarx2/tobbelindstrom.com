@@ -12,7 +12,7 @@ body {
   font-family: map-get($font-families, source-sans-pro);
   line-height: map-get($line-heights, base);
   @include get-font-styles(kramfors);
-  word-break: break-word;
+  overflow-wrap: break-word;
   background-color: var(--color-primary);
   color: var(--color-beta);
   transition: map-get($durations, fast) map-get($easings, ease);
