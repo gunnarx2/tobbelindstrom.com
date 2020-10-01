@@ -1,3 +1,10 @@
+/* stylelint-disable */
+/**
+  Disable styleline in this file because 'selector-class-pattern'
+  only focuses on styles within CSS modules. This grid has an unique
+  and global solution who follows the BEM structure.
+*/
+
 $use-grid: false;
 
 @if ($use-grid) {

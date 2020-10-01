@@ -75,6 +75,7 @@ body.light-theme {
       }
     }
 
+    /* stylelint-disable */
     .gatsby-highlight-code-line {
       background-color: var(--prism-background-highlight);
       display: block;
@@ -85,8 +86,8 @@ body.light-theme {
 
     code {
       background-color: var(--prism-background-inline);
-      padding: .15em .4em .25em .4em;
-      border-radius: .4em;
+      padding: 0.15em 0.4em 0.25em;
+      border-radius: 0.4em;
       @include get-font-styles(helsinki);
       transition: background-color map-get($durations, fast) map-get($easings, ease);
     }
@@ -174,7 +175,7 @@ body.light-theme {
       }
 
       .token.namespace {
-        opacity: .75;
+        opacity: 0.75;
       }
 
       .token.deleted {

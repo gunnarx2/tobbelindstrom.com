@@ -25,7 +25,7 @@ $toggle-size: map-get($spacings, xl) * 1.4936;
   width: $toggle-size;
   height: $toggle-size;
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 3px -2px, rgba(0, 0, 0, 0.25) 0px 3px 4px 0px, rgba(0, 0, 0, 0.125) 0px 1px 8px 0px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px -2px, rgba(0, 0, 0, 0.25) 0 3px 4px 0, rgba(0, 0, 0, 0.125) 0 1px 8px 0;
   transition: background-color map-get($durations, fast) map-get($easings, ease);
 
   &:hover,
@@ -98,7 +98,7 @@ $toggle-size: map-get($spacings, xl) * 1.4936;
     transform: translateY(100%);
 
     svg {
-      $svg-size: 42.5%; 
+      $svg-size: 42.5%;
       width: $svg-size;
       height: $svg-size;
     }
@@ -114,7 +114,7 @@ $toggle-size: map-get($spacings, xl) * 1.4936;
     transform: translateY(300%);
 
     svg {
-      $svg-size: 47.5%; 
+      $svg-size: 47.5%;
       width: $svg-size;
       height: $svg-size;
     }
@@ -129,7 +129,7 @@ $toggle-size: map-get($spacings, xl) * 1.4936;
   position: relative;
   background-color: var(--color-primary);
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 3px -2px, rgba(0, 0, 0, 0.25) 0px 3px 4px 0px, rgba(0, 0, 0, 0.125) 0px 1px 8px 0px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px -2px, rgba(0, 0, 0, 0.25) 0 3px 4px 0, rgba(0, 0, 0, 0.125) 0 1px 8px 0;
   display: block;
   width: 100%;
   height: 100%;
@@ -168,7 +168,7 @@ $toggle-size: map-get($spacings, xl) * 1.4936;
 
 .actionButtonSun {
   svg {
-    $svg-size: 42.5%; 
+    $svg-size: 42.5%;
     width: $svg-size;
     height: $svg-size;
   }
@@ -182,7 +182,7 @@ $toggle-size: map-get($spacings, xl) * 1.4936;
 
 .actionButtonMoon {
   svg {
-    $svg-size: 35%; 
+    $svg-size: 35%;
     margin-top: $svg-size * 0.05;
     width: $svg-size;
     height: $svg-size;
@@ -204,8 +204,8 @@ $toggle-size: map-get($spacings, xl) * 1.4936;
   white-space: nowrap;
   background-color: var(--color-nu);
   @include get-font-styles(helsinki);
-  padding: .25em .5em .3em .5em;
-  border-radius: .4em;
+  padding: 0.25em 0.5em 0.3em;
+  border-radius: 0.4em;
   margin-right: 0;
   visibility: hidden;
   opacity: 0;
@@ -213,11 +213,11 @@ $toggle-size: map-get($spacings, xl) * 1.4936;
   transition-property: visibility, opacity, transform, color, background-color, box-shadow;
 
   :global(body.dark-theme) & {
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 3px -2px, rgba(0, 0, 0, 0.25) 0px 3px 4px 0px, rgba(0, 0, 0, 0.125) 0px 1px 8px 0px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px -2px, rgba(0, 0, 0, 0.25) 0 3px 4px 0, rgba(0, 0, 0, 0.125) 0 1px 8px 0;
   }
 
   :global(body.light-theme) & {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 3px -2px, rgba(0, 0, 0, 0.125) 0px 3px 4px 0px, rgba(0, 0, 0, 0.075) 0px 1px 8px 0px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 3px 3px -2px, rgba(0, 0, 0, 0.125) 0 3px 4px 0, rgba(0, 0, 0, 0.075) 0 1px 8px 0;
   }
 
   @mixin show-label() {

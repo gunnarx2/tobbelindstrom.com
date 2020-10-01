@@ -18,6 +18,8 @@
     "prettier:fix": "prettier '**/*.{js,tsx,ts}' --write",
     "eslint:report": "eslint '**/*.{js,tsx,ts}'",
     "eslint:fix": "eslint '**/*.{js,tsx,ts}' --fix",
+    "stylelint:report": "stylelint '**/*.scss'",
+    "stylelint:fix": "stylelint '**/*.scss' --fix",
     "markdown:report": "markdownlint '**/*.md' --config=./.markdownlint.json --ignore-path=./.markdownlintignore",
     "markdown:fix": "yarn markdown:report --fix"
   },
@@ -77,6 +79,8 @@
     "prettier": "^2.0.5",
     "serve": "^11.3.2",
     "start-server-and-test": "^1.11.2",
+    "stylelint": "^13.7.2",
+    "stylelint-config-sass-guidelines": "^7.1.0",
     "typescript": "^3.9.5"
   },
   "browserslist": [
