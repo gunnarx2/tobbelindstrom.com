@@ -16,7 +16,7 @@
     "cypress:ci": "BROWSER=none start-server-and-test start http://localhost:1234 cypress:run",
     "prettier:report": "prettier '**/*.{js,tsx,ts}' --check",
     "prettier:fix": "prettier '**/*.{js,tsx,ts}' --write",
-    "eslint:report": "eslint '**/*.{js,tsx,ts}' --quiet",
+    "eslint:report": "eslint '**/*.{js,tsx,ts}'",
     "eslint:fix": "eslint '**/*.{js,tsx,ts}' --fix",
     "markdown:report": "markdownlint '**/*.md' --config=./.markdownlint.json --ignore-path=./.markdownlintignore",
     "markdown:fix": "yarn markdown:report --fix"
