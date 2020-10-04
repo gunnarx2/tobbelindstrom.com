@@ -1,0 +1,182 @@
+@import '~styles/settings/variables';
+@import '~styles/tools/mixins/get-font-styles';
+@import '~styles/tools/mixins/respond-to';
+
+:global(body.dark-theme) .root {
+  --visx-background: var(--color-delta);
+  --visx-tools-background: var(--color-kappa);
+  --visx-tools-icon: var(--color-beta);
+}
+
+:global(body.light-theme) .root {
+  --visx-background: var(--color-xi);
+  --visx-tools-background: var(--color-beta);
+  --visx-tools-icon: var(--color-alpha);
+}
+
+.root {
+  width: 100%;
+  padding-bottom: 75%;
+  position: relative;
+}
+
+.inner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--visx-background);
+  border-radius: map-get($spacings, sm);
+  transition: background-color map-get($durations, fast) map-get($easings, ease);
+}
+
+.visx {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.visxArea {
+  cursor: crosshair;
+  user-select: none;
+  touch-action: none;
+}
+
+.visxLinePath {
+  fill: transparent;
+  stroke: url('#stroke');
+  stroke-width: 4;
+}
+
+.visxDrawingStart,
+.visxDrawingEnd {
+  pointer-events: none;
+  fill: var(--color-beta);
+}
+
+.visxDrawingArea {
+  fill: transparent;
+}
+
+.visxTools {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  right: map-get($spacings, sm);
+  bottom: map-get($spacings, sm);
+  opacity: 0;
+  visibility: hidden;
+  transition: map-get($durations, fast) map-get($easings, ease);
+  transition-property: visibility, opacity;
+
+  .hasLines & {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.visxToolsUndo,
+.visxToolsClear {
+  position: relative;
+  display: block;
+  background-color: var(--visx-tools-background);
+  width: map-get($spacings, xl);
+  height: map-get($spacings, xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: map-get($spacings, xs) / 2;
+  border-radius: map-get($spacings, xs);
+  transition: background-color map-get($durations, fast) map-get($easings, ease);
+
+  &:hover,
+  :global(body.is-tabbing) &:focus {
+    background-color: var(--color-primary);
+
+    @media (hover:none), (hover:on-demand) {
+      background-color: var(--visx-tools-background);
+    }
+  }
+
+  @include respond-to(sm) {
+    width: map-get($spacings, lg);
+    height: map-get($spacings, lg);
+  }
+
+  svg {
+    display: block;
+    fill: var(--visx-tools-icon);
+    width: 45%;
+    height: 45%;
+  }
+}
+
+.visxToolsUndo {
+  margin-right: map-get($spacings, xs) / 2;
+}
+
+.visxToolsLabel {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: var(--color-beta);
+  white-space: nowrap;
+  background-color: var(--color-nu);
+  @include get-font-styles(helsinki);
+  padding: 0.25em 0.5em 0.3em;
+  border-radius: 0.4em;
+  user-select: none;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: map-get($durations, fast) map-get($easings, ease);
+  transition-property: visibility, opacity, transform, color, background-color, box-shadow;
+
+  :global(body.dark-theme) & {
+    box-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px -2px, rgba(0, 0, 0, 0.25) 0 3px 4px 0, rgba(0, 0, 0, 0.125) 0 1px 8px 0;
+  }
+
+  :global(body.light-theme) & {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 3px 3px -2px, rgba(0, 0, 0, 0.125) 0 3px 4px 0, rgba(0, 0, 0, 0.075) 0 1px 8px 0;
+  }
+
+  .visxToolsUndo:hover &,
+  .visxToolsClear:hover &,
+  :global(body.is-tabbing) .visxToolsUndo:focus &,
+  :global(body.is-tabbing) .visxToolsClear:focus & {
+    transform: translate(-50%, -#{map-get($spacings, xs) * 0.75});
+    visibility: visible;
+    opacity: 1;
+
+    @media (hover:none), (hover:on-demand) {
+      transform: translate(-50%, 0);
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+}
+
+.visxDrawSomething {
+  position: absolute;
+  top: 50%;
+  left: map-get($spacings, sm);
+  right: map-get($spacings, sm);
+  text-align: center;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-weight: 700;
+  @include get-font-styles(moscow);
+  transition: map-get($durations, fast) map-get($easings, ease);
+  transition-property: visibility, opacity;
+
+  .hasLines & {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

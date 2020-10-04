@@ -6,6 +6,7 @@ import UseBreakpoint from './UseBreakpoint';
 import UseWindowSize from './UseWindowSize';
 import UseClickOutside from './UseClickOutside';
 import UseScroll from './UseScroll';
+import Visx from './Visx';
 
 export {
   Archive,
@@ -15,5 +16,6 @@ export {
   UseBreakpoint,
   UseWindowSize,
   UseClickOutside,
-  UseScroll
+  UseScroll,
+  Visx
 };

@@ -7,6 +7,8 @@ import HomeIcon from './home.svg';
 import SearchIcon from './search.svg';
 import AngleIcon from './angle.svg';
 import CrossIcon from './cross.svg';
+import UndoIcon from './undo.svg';
+import TrashIcon from './trash.svg';
 
 export {
   WaveIcon,
@@ -17,5 +19,7 @@ export {
   HomeIcon,
   SearchIcon,
   AngleIcon,
-  CrossIcon
+  CrossIcon,
+  UndoIcon,
+  TrashIcon
 };
