@@ -51,7 +51,7 @@ export const query = graphql`
           frontmatter {
             title
             spoiler
-            date(formatString: "MMMM DD, YYYY")
+            date(formatString: "DD MMMM YYYY")
           }
           fields {
             slug
