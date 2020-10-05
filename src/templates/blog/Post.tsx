@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 
 import { Seo } from 'components/tools';
 import { Post } from 'components/ui/blog';
+import maskable from 'assets/images/maskable.png';
 
 export interface NextAndPrevious {
   fields: {
@@ -71,7 +72,8 @@ export default ({ data, pageContext }: Props) => {
               },
               "publisher": {
                 "@type": "Organization",
-                "name": "gunnarx2"
+                "name": "gunnarx2",
+                "logo": "${process.env.GATSBY_ORIGIN}${maskable}"
               }
             }
           `}
