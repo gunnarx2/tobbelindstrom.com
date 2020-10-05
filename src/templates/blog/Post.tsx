@@ -70,7 +70,7 @@ export default ({ data, pageContext }: Props) => {
                 "name": "gunnarx2"
               },
               "publisher": {
-                "@type": "Person",
+                "@type": "Organization",
                 "name": "gunnarx2"
               }
             }
