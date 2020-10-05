@@ -31,7 +31,7 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(-#{$container-padding-sides});
-  transition: map-get($durations, slow) map-get($easings, ease);
+  transition: map-get($durations, medium) map-get($easings, ease);
   transition-property: transform, visibility, opacity, background-color;
 
   @include respond-to(sm) {
