@@ -68,6 +68,10 @@ export default ({ data, pageContext }: Props) => {
               "author": {
                 "@type": "Person",
                 "name": "gunnarx2"
+              },
+              "publisher": {
+                "@type": "Person",
+                "name": "gunnarx2"
               }
             }
           `}
