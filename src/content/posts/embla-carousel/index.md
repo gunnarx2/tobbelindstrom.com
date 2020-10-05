@@ -42,24 +42,22 @@ import React, { useEffect } from 'react';
 import { useEmblaCarousel } from 'embla-carousel/react';
 
 const EmblaCarousel = () => {
-  const [EmblaCarouselReact, embla] = useEmblaCarousel({ loop: false });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false });
 
   useEffect(() => {
-    if (embla) {
-      embla.on('select', () => {
-        console.log(`Index is ${embla.selectedScrollSnap()}`);
-      });
+    if (emblaApi) {
+      // Embla API is ready
     }
-  }, [embla]);
+  }, [emblaApi]);
 
   return (
-    <EmblaCarouselReact>
+    <div ref={emblaRef} style={{ overflow: 'hidden' }}>
       <div style={{ display: 'flex' }}>
         <div style={{ minWidth: '100%' }}>Slide 1</div>
         <div style={{ minWidth: '100%' }}>Slide 2</div>
         <div style={{ minWidth: '100%' }}>Slide 3</div>
       </div>
-    </EmblaCarouselReact>
+    </div>
   );
 };
 

@@ -5,36 +5,38 @@ import { DotButton, PrevButton, NextButton } from './EmblaCarouselButtons';
 import styles from './EmblaCarousel.module.scss';
 
 const EmblaCarousel = () => {
-  const [EmblaCarouselReact, embla] = useEmblaCarousel({ loop: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
-  const scrollTo = useCallback((index) => embla?.scrollTo(index), [embla]);
-  const scrollPrev = useCallback(() => embla?.scrollPrev(), [embla]);
-  const scrollNext = useCallback(() => embla?.scrollNext(), [embla]);
+  const scrollTo = useCallback((index) => emblaApi?.scrollTo(index), [
+    emblaApi
+  ]);
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
   const onSelect = useCallback(() => {
-    if (embla) {
-      setSelectedIndex(embla.selectedScrollSnap());
-      setPrevBtnEnabled(embla.canScrollPrev());
-      setNextBtnEnabled(embla.canScrollNext());
+    if (emblaApi) {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+      setPrevBtnEnabled(emblaApi.canScrollPrev());
+      setNextBtnEnabled(emblaApi.canScrollNext());
     }
-  }, [embla]);
+  }, [emblaApi]);
 
   useEffect(() => {
-    if (embla) {
-      setScrollSnaps(embla.scrollSnapList());
-      embla.on('select', onSelect);
+    if (emblaApi) {
+      setScrollSnaps(emblaApi.scrollSnapList());
+      emblaApi.on('select', onSelect);
       onSelect();
     }
-  }, [embla, onSelect]);
+  }, [emblaApi, onSelect]);
 
   return (
     <div className={styles.root}>
       <div className={styles.embla}>
         <div className={styles.inner}>
-          <EmblaCarouselReact className={styles.viewport}>
+          <div ref={emblaRef} className={styles.viewport}>
             <div className={styles.container}>
               {[0, 1, 2, 3, 4].map((number) => (
                 <div
@@ -49,7 +51,7 @@ const EmblaCarousel = () => {
                 </div>
               ))}
             </div>
-          </EmblaCarouselReact>
+          </div>
           <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
           <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
         </div>
