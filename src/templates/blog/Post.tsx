@@ -73,7 +73,12 @@ export default ({ data, pageContext }: Props) => {
               "publisher": {
                 "@type": "Organization",
                 "name": "gunnarx2",
-                "logo": "${process.env.GATSBY_ORIGIN}${maskable}"
+                "logo": {
+                  "@type": "ImageObject",
+                  "width": "393",
+                  "height": "393",
+                  "url": "${process.env.GATSBY_ORIGIN}${maskable}"
+                }
               }
             }
           `}
