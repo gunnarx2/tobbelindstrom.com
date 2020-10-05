@@ -56,7 +56,13 @@ const VisxComponent = ({ width, height }: Props) => {
           height={height}
           resetOnStart
           onDragStart={({ x = 0, y = 0 }) =>
-            setLines((currLines) => [...currLines, [{ x: x + 1, y: y + 1 }]])
+            setLines((currLines) => [
+              ...currLines,
+              [
+                { x, y },
+                { x: x + 0.1, y: y + 0.1 }
+              ]
+            ])
           }
           onDragMove={({ x = 0, y = 0, dx, dy }) =>
             setLines((currLines) => {
