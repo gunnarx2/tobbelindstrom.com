@@ -113,6 +113,7 @@
     fill: var(--visx-tools-icon);
     width: 45%;
     height: 45%;
+    transition: fill map-get($durations, fast) map-get($easings, ease);
   }
 }
 
