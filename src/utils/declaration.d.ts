@@ -15,6 +15,11 @@ declare module '*.jpg' {
   export default content;
 }
 
+declare module '*.png' {
+  const content: string;
+  export default content;
+}
+
 interface Window {
   __THEME__: 'dark' | 'light';
   __SET_THEME__: (theme: 'dark' | 'light') => void;
