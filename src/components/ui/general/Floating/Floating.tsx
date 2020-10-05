@@ -15,7 +15,8 @@ import {
   GitHubIcon,
   SunIcon,
   MoonIcon,
-  HomeIcon
+  HomeIcon,
+  BarsIcon
 } from 'assets/icons';
 import styles from './Floating.module.scss';
 
@@ -60,7 +61,12 @@ const Floating = () => {
             data-test="floating-toggle"
             aria-label={`${open ? 'Close' : 'Open'} floating actions`}
           >
-            <PlusIcon />
+            <div className={styles.toggleBars}>
+              <BarsIcon />
+            </div>
+            <div className={styles.togglePlus}>
+              <PlusIcon />
+            </div>
           </button>
           <div
             className={styles.actions}

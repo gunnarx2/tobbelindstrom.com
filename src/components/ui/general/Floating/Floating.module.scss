@@ -36,25 +36,62 @@ $toggle-size: map-get($spacings, xl) * 1.4936;
       background-color: var(--color-primary);
     }
   }
+}
+
+.toggleBars,
+.togglePlus {
+  pointer-events: none;
+  user-select: none;
+  transition: map-get($durations, fast) map-get($easings, in-out-circ);
+  transition-property: opacity, visibility;
 
   svg {
-    $svg-size: map-get($spacings, sm) * 1.28;
     fill: var(--color-pi);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: rotate(0deg);
+    transition: transform map-get($durations, fast) map-get($easings, in-out-circ);
+
+    .open & {
+      transform: rotate(225deg);
+    }
+  }
+}
+
+.toggleBars {
+  opacity: 1;
+  visibility: visible;
+
+  .open & {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  svg {
+    $svg-size: map-get($spacings, sm) * 1.28;
     margin-left: -#{$svg-size / 2};
     margin-top: -#{$svg-size / 2};
     width: $svg-size;
     height: $svg-size;
-    pointer-events: none;
-    user-select: none;
-    transition: transform map-get($durations, fast) map-get($easings, in-out-circ);
+  }
+}
 
-    .open & {
-      transform: rotate(135deg);
-    }
+.togglePlus {
+  opacity: 0;
+  visibility: hidden;
+
+  .open & {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  svg {
+    $svg-size: map-get($spacings, sm) * 1.38;
+    margin-left: -#{$svg-size / 2};
+    margin-top: -#{$svg-size / 2};
+    width: $svg-size;
+    height: $svg-size;
   }
 }
 

@@ -9,6 +9,7 @@ import AngleIcon from './angle.svg';
 import CrossIcon from './cross.svg';
 import UndoIcon from './undo.svg';
 import TrashIcon from './trash.svg';
+import BarsIcon from './bars.svg';
 
 export {
   WaveIcon,
@@ -21,5 +22,6 @@ export {
   AngleIcon,
   CrossIcon,
   UndoIcon,
-  TrashIcon
+  TrashIcon,
+  BarsIcon
 };
