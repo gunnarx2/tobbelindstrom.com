@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { graphql } from 'gatsby';
 
 import { Seo } from 'components/tools';
@@ -40,14 +40,39 @@ interface Props {
 
 export default ({ data, pageContext }: Props) => {
   const { frontmatter, body, timeToRead } = data.mdx;
+  const { title, description } = frontmatter;
+  const dateToISOString = useMemo(
+    () => new Date(`${frontmatter.date} UTC`).toISOString(),
+    [frontmatter.date]
+  );
 
   return (
     <>
       <Seo
-        title={frontmatter.title}
-        description={frontmatter.description}
+        title={title}
+        description={description}
         url={`${process.env.GATSBY_ORIGIN}${pageContext.slug}`}
-      />
+      >
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              "name": "tobbelindstrom.com",
+              "description": "${description}",
+              "url": "${process.env.GATSBY_ORIGIN}${pageContext.slug}",
+              "headline": "${title}",
+              "image": "${process.env.GATSBY_ORIGIN}/share-image.jpg",
+              "datePublished": "${dateToISOString}",
+              "dateModified": "${dateToISOString}",
+              "author": {
+                "@type": "Person",
+                "name": "gunnarx2"
+              }
+            }
+          `}
+        </script>
+      </Seo>
       <Post
         frontmatter={frontmatter}
         body={body}

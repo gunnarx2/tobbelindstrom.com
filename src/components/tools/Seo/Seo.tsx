@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
@@ -12,9 +12,17 @@ interface Props {
     content: string;
     property?: string;
   }[];
+  children?: ReactNode;
 }
 
-const Seo = ({ title, description, lang = 'en', meta = [], url }: Props) => {
+const Seo = ({
+  title,
+  description,
+  lang = 'en',
+  meta = [],
+  url,
+  children = null
+}: Props) => {
   const {
     site: { siteMetadata }
   } = useStaticQuery(
@@ -91,7 +99,9 @@ const Seo = ({ title, description, lang = 'en', meta = [], url }: Props) => {
         },
         ...meta
       ]}
-    />
+    >
+      {children}
+    </Helmet>
   );
 };
 
