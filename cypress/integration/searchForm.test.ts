@@ -15,18 +15,14 @@ describe('Search form', () => {
     cy.window().its('sessionStorage').its('search').should('eq', dummyValue);
     cy.get('@input').should('have.value', dummyValue);
     cy.get('@input').clear();
-    cy.window()
-      .its('sessionStorage')
-      .its('search')
-      .its('length')
-      .should('be', 0);
+    cy.window().its('sessionStorage').its('search').should('have.length', 0);
   });
 
   it('Clear input with button', () => {
     cy.get('@input').type(dummyValue);
-    cy.get('@input').its('length').should('be', dummyValue.length);
+    cy.get('@input').should('have.value', dummyValue);
     cy.get('@clear').click();
-    cy.get('@input').its('length').should('be', 0);
+    cy.get('@input').should('not.have.value');
   });
 
   it('Clear button should only be visible when input contains something', () => {
