@@ -6,12 +6,14 @@ module.exports = {
   rules: {
     'prettier/prettier': 2,
     'consistent-return': 0,
-    'no-unused-expressions': 0,
-    'babel/no-unused-expressions': 2,
-    'import/no-cycle': 0,
     'no-console': 0,
+    'no-unused-expressions': 0,
+    'no-undef': 0,
+    'no-use-before-define': 0,
+    'no-shadow': 0,
     'func-names': 0,
     'prefer-destructuring': 0,
+    'import/no-cycle': 0,
     'import/prefer-default-export': 0,
     'react/jsx-filename-extension': 0,
     'react/jsx-props-no-spreading': 0,
@@ -19,10 +21,16 @@ module.exports = {
     'react/destructuring-assignment': 0,
     'react/prop-types': 0,
     'react/require-default-props': 0,
+    'babel/no-unused-expressions': [
+      2,
+      {
+        allowTernary: true
+      }
+    ],
     'jsx-a11y/no-noninteractive-tabindex': [
       2,
       {
-        tags: ['pre']
+        tags: ['pre', 'span']
       }
     ],
     'no-underscore-dangle': [
@@ -32,7 +40,7 @@ module.exports = {
       }
     ],
     'import/order': [
-      'error',
+      2,
       {
         groups: [['builtin', 'external']],
         'newlines-between': 'always'
