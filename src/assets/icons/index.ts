@@ -10,6 +10,7 @@ import CrossIcon from './cross.svg';
 import UndoIcon from './undo.svg';
 import TrashIcon from './trash.svg';
 import BarsIcon from './bars.svg';
+import HeisenbergIcon from './heisenberg.svg';
 
 export {
   WaveIcon,
@@ -23,5 +24,6 @@ export {
   CrossIcon,
   UndoIcon,
   TrashIcon,
-  BarsIcon
+  BarsIcon,
+  HeisenbergIcon
 };
