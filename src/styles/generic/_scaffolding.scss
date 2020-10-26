@@ -22,6 +22,10 @@ body {
     transform: rotateY(180deg);
   }
 
+  &.prevent-scroll {
+    overflow: hidden;
+  }
+
   &::after {
     position: absolute;
     left: -1337px;
@@ -122,14 +126,16 @@ textarea {
 }
 
 body.is-tabbing {
-  a:focus,
+  a[href]:focus,
   input:focus,
   button:focus,
   label:focus,
   select:focus,
   textarea:focus,
   [role='button']:focus,
-  [tabindex='0']:focus {
+  [tabindex='0']:focus,
+  [contenteditable]:focus,
+  [controls]:focus {
     outline: 5px auto var(--color-is-tabbing) !important;
   }
 }
