@@ -1,33 +1,16 @@
-import { useTabAccess } from './useTabAccess';
-import { useResize } from './useResize';
-import { useWindowSize } from './useWindowSize';
-import { useEventListener } from './useEventListener';
-import { useBreakpoint } from './useBreakpoint';
-import { useSearchPosts } from './useSearchPosts';
-import { usePrevious } from './usePrevious';
-import { useMutationObserver } from './useMutationObserver';
-import { useKeyPress } from './useKeyPress';
-import { useClickOutside } from './useClickOutside';
-import { useToggleTheme } from './useToggleTheme';
-import { useInterval } from './useInterval';
-import { useResizeObserver } from './useResizeObserver';
-import { useScroll } from './useScroll';
-import { useKonamiCode } from './useKonamiCode';
-
-export {
-  useTabAccess,
-  useResize,
-  useWindowSize,
-  useEventListener,
-  useBreakpoint,
-  useSearchPosts,
-  usePrevious,
-  useMutationObserver,
-  useKeyPress,
-  useClickOutside,
-  useToggleTheme,
-  useInterval,
-  useResizeObserver,
-  useScroll,
-  useKonamiCode
-};
+export { useTabAccess } from './useTabAccess';
+export { useResize } from './useResize';
+export { useWindowSize } from './useWindowSize';
+export { useEventListener } from './useEventListener';
+export { useBreakpoint } from './useBreakpoint';
+export { useSearchPosts } from './useSearchPosts';
+export { usePrevious } from './usePrevious';
+export { useMutationObserver } from './useMutationObserver';
+export { useKeyPress } from './useKeyPress';
+export { useClickOutside } from './useClickOutside';
+export { useToggleTheme } from './useToggleTheme';
+export { useInterval } from './useInterval';
+export { useResizeObserver } from './useResizeObserver';
+export { useScroll } from './useScroll';
+export { useKonamiCode } from './useKonamiCode';
+export { useTrapFocus } from './useTrapFocus';

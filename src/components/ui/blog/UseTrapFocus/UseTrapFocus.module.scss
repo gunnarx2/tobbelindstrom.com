@@ -1,0 +1,8 @@
+@import '~styles/tools/mixins/styled-links';
+
+.root {
+  button {
+    background-color: transparent;
+    @include styled-links();
+  }
+}

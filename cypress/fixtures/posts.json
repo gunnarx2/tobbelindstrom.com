@@ -16,5 +16,6 @@
   "useClickOutside",
   "useScroll",
   "cancellation-with-switchMap-and-custom-promises",
-  "airbnb-introduces-visx"
+  "airbnb-introduces-visx",
+  "useTrapFocus"
 ]
