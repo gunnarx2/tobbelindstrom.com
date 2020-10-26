@@ -4,6 +4,7 @@ type ImpactValue = 'minor' | 'moderate' | 'serious' | 'critical';
 type TagValue = 'wcag2a' | 'wcag2aa' | 'section508' | 'best-practice';
 type ReporterVersion = 'v1' | 'v2' | 'raw' | 'raw-env' | 'no-passes';
 type RunOnlyType = 'rule' | 'rules' | 'tag' | 'tags';
+type resultGroups = 'inapplicable' | 'passes' | 'incomplete' | 'violations';
 
 type ContextObject = {
   include?: string[] | string[][];
@@ -32,4 +33,15 @@ interface RunOptions {
   preload?: boolean;
   performanceTimer?: boolean;
   includedImpacts?: ImpactValue[] | string[];
+}
+
+declare namespace Cypress {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  interface Chainable {
+    injectAxe(): Chainable<EventEmitter>;
+    checkA11y(
+      context?: ElementContext,
+      options?: RunOptions
+    ): Chainable<EventEmitter>;
+  }
 }

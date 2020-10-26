@@ -1,8 +1,10 @@
+import { Test } from 'consts/floating';
+
 describe('Floating actions', () => {
   beforeEach(() => {
     cy.visit('/');
-    cy.get('[data-test="floating-toggle"]').as('toggle');
-    cy.get('[data-test="floating-actions"]').as('actions');
+    cy.get(`[data-test="${Test.TOGGLE}"]`).as('toggle');
+    cy.get(`[data-test="${Test.ACTIONS}"]`).as('actions');
   });
 
   it('Open and close with toggle button', () => {
@@ -30,7 +32,7 @@ describe('Floating actions', () => {
   it('Navigate to the home page', () => {
     cy.visit('/blog/how-to-create-a-breakpoint-mixin-with-styled-components/');
     cy.get('@toggle').click();
-    cy.get('[data-test="floating-action-home"]').click();
+    cy.get(`[data-test="${Test.ACTION_HOME}"]`).click();
     cy.url().should('eq', Cypress.config().baseUrl);
   });
 });

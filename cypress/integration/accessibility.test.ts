@@ -1,3 +1,5 @@
+import { Test } from 'consts/floating';
+
 describe('Accessibility tests', () => {
   const screenResolutions = [
     [320, 568],
@@ -38,7 +40,7 @@ describe('Accessibility tests', () => {
 
     it(`Floating actions for ${width}x${height}`, () => {
       cy.viewport(width, height);
-      cy.get('[data-test="floating-toggle"]').as('toggle');
+      cy.get(`[data-test="${Test.TOGGLE}"]`).as('toggle');
       cy.get('@toggle').click().checkA11y(null, a11yOptions);
       cy.get('@toggle').click().checkA11y(null, a11yOptions);
     });

@@ -7,6 +7,7 @@ import UseWindowSize from './UseWindowSize';
 import UseClickOutside from './UseClickOutside';
 import UseScroll from './UseScroll';
 import Visx from './Visx';
+import UseTrapFocus from './UseTrapFocus';
 
 export {
   Archive,
@@ -17,5 +18,6 @@ export {
   UseWindowSize,
   UseClickOutside,
   UseScroll,
-  Visx
+  Visx,
+  UseTrapFocus
 };

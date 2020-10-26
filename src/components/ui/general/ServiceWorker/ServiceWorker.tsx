@@ -1,20 +1,16 @@
-import React, { useCallback, useState, useMemo, useEffect } from 'react';
-import classNames from 'classnames';
+import React, { useCallback, useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import { Portal } from 'components/tools';
 import { Container } from 'components/ui/general';
 import { useMutationObserver } from 'hooks';
 import { isSSR, getElement } from 'utils';
+import { Transition } from 'consts/serviceWorker';
 import styles from './ServiceWorker.module.scss';
 
 const ServiceWorker = () => {
   const serviceWorkerSelector = useMemo(() => '#service-worker', []);
   const [shouldRender, setShouldRender] = useState(false);
-  const [active, setActive] = useState(false);
-
-  useEffect(() => {
-    if (shouldRender) setTimeout(() => setActive(shouldRender), 0);
-  }, [shouldRender]);
 
   const handleMutations = useCallback((mutations) => {
     mutations.forEach(
@@ -40,46 +36,52 @@ const ServiceWorker = () => {
     callback: handleMutations
   });
 
-  if (shouldRender) {
-    return (
-      <Portal selector={serviceWorkerSelector}>
-        <div
-          className={classNames(styles.root, {
-            [styles.active]: active
-          })}
-        >
-          <Container>
-            <div className={styles.inner}>
-              <div className={styles.content}>
-                <div className={styles.background}>
-                  <h4 className={styles.title}>New content available</h4>
-                  <div className={styles.buttons}>
-                    <button
-                      type="button"
-                      className={styles.reload}
-                      onClick={() => window.location.reload()}
-                    >
-                      Update content
-                    </button>
-                    <span className={styles.separator} />
-                    <button
-                      type="button"
-                      className={styles.close}
-                      onClick={() => setShouldRender(false)}
-                    >
-                      Close
-                    </button>
+  return (
+    <AnimatePresence>
+      {shouldRender && (
+        <Portal selector={serviceWorkerSelector}>
+          <motion.div
+            key="service-worker"
+            transition={{
+              duration: Transition.DURATION,
+              ease: Transition.EASE
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={styles.root}
+          >
+            <Container>
+              <div className={styles.inner}>
+                <div className={styles.content}>
+                  <div className={styles.background}>
+                    <h4 className={styles.title}>New content available</h4>
+                    <div className={styles.buttons}>
+                      <button
+                        type="button"
+                        className={styles.reload}
+                        onClick={() => window.location.reload()}
+                      >
+                        Update content
+                      </button>
+                      <span className={styles.separator} />
+                      <button
+                        type="button"
+                        className={styles.close}
+                        onClick={() => setShouldRender(false)}
+                      >
+                        Close
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </Container>
-        </div>
-      </Portal>
-    );
-  }
-
-  return null;
+            </Container>
+          </motion.div>
+        </Portal>
+      )}
+    </AnimatePresence>
+  );
 };
 
 export default ServiceWorker;

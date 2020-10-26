@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect } from 'react';
 
 import { ServiceWorker, Floating } from 'components/ui/general';
 import { useTabAccess, useKonamiCode } from 'hooks';
+import { ClassNames } from 'consts/konamiCode';
 import 'styles/_global.scss';
 
 interface Props {
@@ -13,7 +14,7 @@ const Layout = ({ children }: Props) => {
 
   useEffect(() => {
     if (success) {
-      document.body?.classList.add('konami-code');
+      document.body?.classList.add(ClassNames.KONAMI_CODE);
     }
   }, [success]);
 

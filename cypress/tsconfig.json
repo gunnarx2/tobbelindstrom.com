@@ -1,7 +1,6 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "../node_modules",
     "isolatedModules": false,
     "skipLibCheck": true,
     "types": [
@@ -10,6 +9,6 @@
     ]
   },
   "include": [
-    "**/*.ts",
+    "**/*.ts"
   ]
 }

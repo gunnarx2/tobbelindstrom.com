@@ -3,6 +3,7 @@ import React, { useCallback } from 'react';
 import { Container, Hero, BlogPlate, SearchForm } from 'components/ui/general';
 import { ArchivePost } from 'templates/blog/Archive';
 import { useSearchPosts } from 'hooks';
+import { Test } from 'consts/searchForm';
 import styles from './Archive.module.scss';
 
 interface Props {
@@ -15,7 +16,10 @@ const Archive = (props: Props) => {
   const renderFeed = useCallback(() => {
     if (!posts.length) {
       return (
-        <li className={styles.feedNothing} data-test="archive-feed-nothing">
+        <li
+          className={styles.feedNothing}
+          data-test={Test.ARCHIVE_FEED_NOTHING}
+        >
           Nothing matches <span>{value}</span>, please try again...
         </li>
       );
@@ -25,7 +29,7 @@ const Archive = (props: Props) => {
       <li
         key={node.id}
         className={styles.feedItem}
-        data-test="archive-feed-item"
+        data-test={Test.ARCHIVE_FEED_ITEM}
       >
         <BlogPlate node={node} />
       </li>

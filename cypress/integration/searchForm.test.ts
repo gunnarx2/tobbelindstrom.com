@@ -1,11 +1,13 @@
+import { Test } from 'consts/searchForm';
+
 describe('Search form', () => {
   const dummyValue = 'Lorem ipsum dolor sit amet';
 
   beforeEach(() => {
     cy.visit('/');
-    cy.get('[data-test="search-form-input"]').as('input');
+    cy.get(`[data-test="${Test.INPUT}"]`).as('input');
     cy.get('@input').clear();
-    cy.get('[data-test="search-form-clear"]').as('clear');
+    cy.get(`[data-test="${Test.CLEAR}"]`).as('clear');
   });
 
   it('Session storage', () => {
@@ -46,7 +48,7 @@ describe('Search form', () => {
   });
 
   it('Feed should have some posts with correct search query', () => {
-    cy.get('[data-test="archive-feed-item"]').as('archiveFeedItem');
+    cy.get(`[data-test="${Test.ARCHIVE_FEED_ITEM}"]`).as('archiveFeedItem');
     cy.get('@archiveFeedItem').its('length').should('be.gt', 0);
     cy.get('@input').type('ResizeObserver');
     cy.get('@archiveFeedItem').its('length').should('be.gt', 0);
@@ -57,7 +59,9 @@ describe('Search form', () => {
 
   it('Feed should not have any posts with incorrect search query', () => {
     cy.get('@input').type(dummyValue);
-    cy.get('[data-test="archive-feed-nothing"]').as('archiveFeedNothing');
+    cy.get(`[data-test="${Test.ARCHIVE_FEED_NOTHING}"]`).as(
+      'archiveFeedNothing'
+    );
     cy.get('@archiveFeedNothing').its('length').should('not.be', 1);
     cy.get('@archiveFeedNothing').contains(
       `Nothing matches ${dummyValue}, please try again...`

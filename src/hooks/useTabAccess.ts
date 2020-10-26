@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 
+import { ClassNames } from 'consts/tabAccess';
 import { useEventListener } from 'hooks';
 
 export const useTabAccess = (): boolean => {
@@ -9,7 +10,7 @@ export const useTabAccess = (): boolean => {
     ({ keyCode }) => {
       if (keyCode === 9 && !isTabbing) {
         setIsTabbing(true);
-        document.body?.classList.add('is-tabbing');
+        document.body?.classList.add(ClassNames.IS_TABBING);
       }
     },
     [isTabbing]
@@ -18,7 +19,7 @@ export const useTabAccess = (): boolean => {
   const handleMousedown = useCallback(() => {
     if (isTabbing) {
       setIsTabbing(false);
-      document.body?.classList.remove('is-tabbing');
+      document.body?.classList.remove(ClassNames.IS_TABBING);
     }
   }, [isTabbing]);
 

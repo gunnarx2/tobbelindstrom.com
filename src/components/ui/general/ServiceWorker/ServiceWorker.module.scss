@@ -28,17 +28,11 @@
   box-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px -2px, rgba(0, 0, 0, 0.25) 0 3px 4px 0, rgba(0, 0, 0, 0.125) 0 1px 8px 0;
   border-radius: map-get($spacings, sm);
   overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-#{$container-padding-sides});
-  transition: map-get($durations, medium) map-get($easings, ease);
-  transition-property: transform, visibility, opacity, background-color;
 
   @include respond-to(sm) {
     top: auto;
     right: auto;
     bottom: 0;
-    transform: translateY($container-padding-sides);
   }
   
   &::before {
@@ -49,12 +43,6 @@
     left: 0;
     height: 4px;
     background-color: var(--color-primary);
-  }
-
-  .active & {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
   }
 }
 

@@ -1,10 +1,12 @@
+import { Test } from 'consts/floating';
+
 describe('Theme', () => {
   const localStorageKey = 'theme';
 
   beforeEach(() => {
     cy.visit('/');
-    cy.get('[data-test="floating-toggle"]').as('toggle');
-    cy.get('[data-test="floating-action-theme"]').as('actionTheme');
+    cy.get(`[data-test="${Test.TOGGLE}"]`).as('toggle');
+    cy.get(`[data-test="${Test.ACTION_THEME}"]`).as('actionTheme');
     cy.clearLocalStorage(localStorageKey).then((ls) => {
       expect(ls.getItem(localStorageKey)).to.eq(null);
     });

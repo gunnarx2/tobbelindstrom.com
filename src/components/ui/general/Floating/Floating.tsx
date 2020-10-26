@@ -18,6 +18,7 @@ import {
   HomeIcon,
   BarsIcon
 } from 'assets/icons';
+import { Test } from 'consts/floating';
 import styles from './Floating.module.scss';
 
 const Floating = () => {
@@ -58,7 +59,7 @@ const Floating = () => {
             type="button"
             className={styles.toggle}
             onClick={() => setOpen(!open)}
-            data-test="floating-toggle"
+            data-test={Test.TOGGLE}
             aria-label={`${open ? 'Close' : 'Open'} floating actions`}
           >
             <div className={styles.toggleBars}>
@@ -71,14 +72,14 @@ const Floating = () => {
           <div
             className={styles.actions}
             aria-hidden={!open}
-            data-test="floating-actions"
+            data-test={Test.ACTIONS}
           >
             <div className={styles.action}>
               <Link
                 to="/"
                 className={styles.actionButton}
                 tabIndex={open ? 0 : -1}
-                data-test="floating-action-home"
+                data-test={Test.ACTION_HOME}
                 ariaLabel="Go to home page"
               >
                 <HomeIcon />
@@ -91,7 +92,7 @@ const Floating = () => {
                 className={styles.actionButton}
                 onClick={() => toggleTheme()}
                 tabIndex={open ? 0 : -1}
-                data-test="floating-action-theme"
+                data-test={Test.ACTION_THEME}
                 aria-label={`Activate ${
                   theme === 'dark' ? 'light' : 'dark'
                 } mode`}

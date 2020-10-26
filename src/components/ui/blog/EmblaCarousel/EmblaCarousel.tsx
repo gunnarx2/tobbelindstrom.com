@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useEmblaCarousel } from 'embla-carousel/react';
 
+import { Test } from 'consts/embla';
 import { DotButton, PrevButton, NextButton } from './EmblaCarouselButtons';
 import styles from './EmblaCarousel.module.scss';
 
@@ -42,7 +43,7 @@ const EmblaCarousel = () => {
                 <div
                   key={number}
                   className={styles.slide}
-                  data-test="embla-slide"
+                  data-test={Test.SLIDE}
                   aria-hidden={selectedIndex !== number}
                 >
                   <div className={styles.slideInner}>

@@ -2,6 +2,7 @@ import React, { useCallback, useRef, Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 
 import { useKeyPress } from 'hooks';
+import { Test } from 'consts/searchForm';
 import { SearchIcon, CrossIcon } from 'assets/icons';
 import styles from './SearchForm.module.scss';
 
@@ -44,7 +45,7 @@ const SearchForm = ({ value, setValue }: Props) => {
         placeholder="Search posts..."
         aria-label="Search for posts"
         value={value}
-        data-test="search-form-input"
+        data-test={Test.INPUT}
         onChange={({ target }) => setValue(target.value)}
       />
       <button
@@ -52,7 +53,7 @@ const SearchForm = ({ value, setValue }: Props) => {
         className={styles.clear}
         onClick={handleButtonClear}
         aria-hidden={!value.length}
-        data-test="search-form-clear"
+        data-test={Test.CLEAR}
         aria-label="Clear search query for posts"
       >
         <CrossIcon />

@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import classNames from 'classnames';
 
+import { Test } from 'consts/embla';
 import { AngleIcon } from 'assets/icons';
 import styles from './EmblaCarousel.module.scss';
 
@@ -20,7 +21,7 @@ export const DotButton = memo(
     <button
       type="button"
       aria-label={`Carousel dots button for slide ${index + 1}`}
-      data-test="embla-dot"
+      data-test={Test.DOT}
       className={classNames(styles.dot, {
         [styles.isSelected]: selected
       })}
@@ -38,7 +39,7 @@ export const PrevButton = memo(
           ? 'Go to previous carousel slide'
           : `Can't go to previous carousel slide`
       }
-      data-test="embla-prev"
+      data-test={Test.PREVIOUS}
       className={classNames(styles.button, styles.buttonPrev)}
       onClick={onClick}
       disabled={!enabled}
@@ -58,7 +59,7 @@ export const NextButton = memo(
           ? 'Go to next carousel slide'
           : `Can't go to next carousel slide`
       }
-      data-test="embla-next"
+      data-test={Test.NEXT}
       className={classNames(styles.button, styles.buttonNext)}
       onClick={onClick}
       disabled={!enabled}

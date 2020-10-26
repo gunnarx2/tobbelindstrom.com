@@ -1,3 +1,5 @@
+import { Test } from 'consts/embla';
+
 describe('Embla carousel', () => {
   const slides = [0, 1, 2, 3, 4];
   const isSelectedClass = 'is-selected';
@@ -5,8 +7,8 @@ describe('Embla carousel', () => {
 
   beforeEach(() => {
     cy.visit('/blog/embla-carousel/');
-    cy.get('[data-test="embla-slide"]').as('slide');
-    cy.get('[data-test="embla-dot"]').as('dot');
+    cy.get(`[data-test="${Test.SLIDE}"]`).as('slide');
+    cy.get(`[data-test="${Test.DOT}"]`).as('dot');
   });
 
   it(`"${isSelectedClass}" class is appended to the correct slide`, () => {
@@ -21,13 +23,13 @@ describe('Embla carousel', () => {
         );
     };
 
-    cy.get('[data-test="embla-next"]').as('next');
-    cy.get('[data-test="embla-prev"]').as('prev');
+    cy.get(`[data-test="${Test.NEXT}"]`).as('next');
+    cy.get(`[data-test="${Test.PREVIOUS}"]`).as('previous');
     testEverySlide([0, 1, 4]);
     cy.get('@next').click();
     testEverySlide([0, 1, 2]);
-    cy.get('@prev').click();
-    cy.get('@prev').click();
+    cy.get('@previous').click();
+    cy.get('@previous').click();
     testEverySlide([0, 3, 4]);
     cy.get('@dot').eq(3).click();
     testEverySlide([2, 3, 4]);
