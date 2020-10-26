@@ -1,0 +1,91 @@
+@import '~styles/settings/variables';
+
+:global(body.dark-theme) .root {
+  --trap-focus-background: var(--color-delta);
+  --trap-focus-close: var(--color-epsilon);
+  --trap-focus-regular: var(--color-epsilon);
+  --trap-focus-hero: var(--color-alpha);
+  --trap-focus-heisenberg: var(--color-epsilon);
+}
+
+:global(body.light-theme) .root {
+  --trap-focus-background: var(--color-alpha);
+  --trap-focus-close: var(--color-gamma);
+  --trap-focus-regular: var(--color-epsilon);
+  --trap-focus-hero: var(--color-delta);
+  --trap-focus-heisenberg: var(--color-gamma);
+}
+
+.root {
+  background-color: var(--trap-focus-background);
+  width: 100%;
+  border-radius: map-get($spacings, sm);
+  position: relative;
+
+  &,
+  * {
+    outline: none;
+  }
+}
+
+.hero {
+  padding-bottom: 56.25%;
+  background-color: var(--trap-focus-hero);
+  position: relative;
+  border-top-right-radius: map-get($spacings, sm);
+  border-top-left-radius: map-get($spacings, sm);
+
+  svg {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    fill: var(--trap-focus-heisenberg);
+  }
+}
+
+.content {
+  padding: $container-padding-sides;
+
+  p {
+    margin-bottom: 0;
+    color: var(--trap-focus-regular);
+  }
+
+  span {
+    color: var(--color-beta);
+  }
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: $container-padding-sides * 2;
+  height: $container-padding-sides * 2;
+  background-color: transparent;
+  fill: var(--trap-focus-close);
+  transition: fill map-get($durations, fast) map-get($easings, ease);
+
+  &:hover,
+  :global(body.is-tabbing) &:focus {
+    fill: var(--color-primary);
+
+    @media (hover:none), (hover:on-demand) {
+      fill: var(--trap-focus-close);
+    }
+  }
+
+  svg {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 33.33%;
+    height: 33.33%;
+  }
+}

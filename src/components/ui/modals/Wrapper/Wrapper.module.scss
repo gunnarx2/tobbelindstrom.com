@@ -1,0 +1,33 @@
+@import '~styles/settings/variables';
+
+.root {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1337;
+  background-color: rgba(#000, 0.75);
+  padding: $container-padding-sides 0;
+  overflow: auto;
+}
+
+.inner {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  height: 100%;
+}
+
+.body {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.dialog {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 map-get($spacings, sm);
+}
