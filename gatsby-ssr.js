@@ -86,6 +86,7 @@ export const onRenderBody = ({
       id="service-worker"
       aria-hidden="true"
       role="complementary"
-    />
+    />,
+    <div key="modal" id="modal" role="dialog" />
   ]);
 };
