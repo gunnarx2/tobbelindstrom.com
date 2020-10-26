@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { graphql } from 'gatsby';
 
 import { Seo } from 'components/tools';
-import { Post } from 'components/ui/blog';
+import { Post as PostComponent } from 'components/ui/blog';
 import maskable from 'assets/images/maskable.png';
 
 export interface NextAndPrevious {
@@ -84,7 +84,7 @@ export default ({ data, pageContext }: Props) => {
           `}
         </script>
       </Seo>
-      <Post
+      <PostComponent
         frontmatter={frontmatter}
         body={body}
         timeToRead={timeToRead}
