@@ -36,14 +36,14 @@ import { UseWindowSize } from 'components/ui/blog';
 Get window width and height with the opportunity to [debounce](https://lodash.com/docs/4.17.15#debounce)
 the callback.
 
-I'm using my [isSSR](/blog/useMutationObserver/#is-server-side-rendering) utility
-and [useResize()](/blog/useResize/) hook to get the window size when a resize
+I'm using my [isSSR](/blog/useMutationObserver/#is-server-side-rendering)
+utility and [useResize()](/blog/useResize/) hook to get the window size when a resize
 is triggered.
 
 ```ts
 import { useState, useCallback } from 'react';
 import { isSSR } from './utils';
-import { useResize } from './useResize';
+import { useResize } from './hooks';
 
 export const useWindowSize = (
   wait: number = 250
@@ -75,7 +75,7 @@ it with a 1000 milliseconds wait timeout and `console.log()` its sizes.
 
 ```tsx
 import React, { useEffect } from 'react';
-import { useWindowSize } from './useWindowSize';
+import { useWindowSize } from './hooks';
 
 const Component = () => {
   const { width, height } = useWindowSize(1000);

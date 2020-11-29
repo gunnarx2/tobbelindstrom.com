@@ -87,13 +87,13 @@ If you inspect the source code of this website you'll see this logic in use.
 
 With this hook we can communicate the use of breakpoints between SCSS and JavaScript.
 
-I'm using my [isSSR](/blog/useMutationObserver/#is-server-side-rendering) utility
-and [useWindowSize()](/blog/useWindowSize/) hook to get the breakpoint.
+I'm using my [isSSR](/blog/useMutationObserver/#is-server-side-rendering)
+utility and [useWindowSize()](/blog/useWindowSize/) hook to get the breakpoint.
 
 ```ts
 import { useEffect, useState, useCallback } from 'react';
 import { isSSR } from './utils';
-import { useWindowSize } from './useWindowSize';
+import { useWindowSize } from './hooks';
 
 export const useBreakpoint = (): string | undefined => {
   const { width } = useWindowSize();
@@ -122,7 +122,7 @@ When the breakpoint changes we'll `console.log()` it.
 
 ```tsx
 import React, { useEffect } from 'react';
-import { useBreakpoint } from './useBreakpoint';
+import { useBreakpoint } from './hooks';
 
 const Component = () => {
   const breakpoint = useBreakpoint();

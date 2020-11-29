@@ -18,7 +18,7 @@ To remind you of the purpose and goal of this week:
 >
 > I will not describe the hooks in great detail, I'll just present them and show
 > how it's implemented. Then you can do whatever you want with them.
-> 
+>
 > Every hook is also available [here](https://github.com/gunnarx2/tobbelindstrom.com/tree/master/src/hooks),
 > together with a range of other hooks.
 >
@@ -30,16 +30,16 @@ With this hook you can easily add event listeners and it will remove itself
 to avoid memory leaks. Element supports `refs`, `document` and `window`.
 
 I'm using my [isSSR](/blog/useMutationObserver/#is-server-side-rendering) and
-[getElement()](/blog/useMutationObserver/#get-element) utility.
+[getRefElement()](/blog/useMutationObserver/#get-ref-element) utility.
 
 ```ts
-import { useRef, useEffect, RefObject, useCallback } from 'react';
-import { isSSR, getElement } from './utils';
+import { useRef, useEffect, useCallback, RefObject } from 'react';
+import { isSSR, getRefElement } from './utils';
 
-interface Props {
+interface UseEventListener {
   type: keyof WindowEventMap;
   listener: EventListener;
-  element?: RefObject<Element> | Document | Window;
+  element?: RefObject<Element> | Document | Window | null;
   options?: AddEventListenerOptions;
 }
 
@@ -48,7 +48,7 @@ export const useEventListener = ({
   listener,
   element = isSSR ? undefined : window,
   options
-}: Props) => {
+}: UseEventListener): void => {
   const savedListener = useRef<EventListener>();
 
   useEffect(() => {
@@ -60,7 +60,7 @@ export const useEventListener = ({
   }, []);
 
   useEffect(() => {
-    const target = getElement(element);
+    const target = getRefElement(element);
     target?.addEventListener(type, handleEventListener, options);
     return () => target?.removeEventListener(type, handleEventListener);
   }, [type, element, options, handleEventListener]);
@@ -74,7 +74,7 @@ the element. If we wouldn't pass an element it would fallback to the `window`.
 
 ```tsx
 import React from 'react';
-import { useEventListener } from './useEventListener';
+import { useEventListener } from './hooks';
 
 const Component = () => {
   const ref = useRef(null);

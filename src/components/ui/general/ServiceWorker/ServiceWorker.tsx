@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Portal } from 'components/tools';
 import { Container } from 'components/ui/general';
 import { useMutationObserver } from 'hooks';
-import { isSSR, getElement } from 'utils';
+import { isSSR } from 'utils';
 import { Transition } from 'consts/serviceWorker';
 import styles from './ServiceWorker.module.scss';
 
@@ -22,9 +22,7 @@ const ServiceWorker = () => {
         target: Element | null;
       }) => {
         if (type === 'attributes') {
-          setShouldRender(
-            getElement(target)?.getAttribute('aria-hidden') !== 'true'
-          );
+          setShouldRender(target?.getAttribute('aria-hidden') !== 'true');
         }
       }
     );

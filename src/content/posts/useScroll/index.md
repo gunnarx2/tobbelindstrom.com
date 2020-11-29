@@ -16,7 +16,7 @@ To remind you of the purpose and goal of this week:
 >
 > I will not describe the hooks in great detail, I'll just present them and show
 > how it's implemented. Then you can do whatever you want with them.
-> 
+>
 > Every hook is also available [here](https://github.com/gunnarx2/tobbelindstrom.com/tree/master/src/hooks),
 > together with a range of other hooks.
 >
@@ -36,39 +36,89 @@ import { UseScroll } from 'components/ui/blog';
 With this hook you get scroll amount on y axis and the current direction, and with
 the opportunity to [throttle](https://lodash.com/docs/4.17.15#throttle) the callback.
 
-I'm using my [isSSR](/blog/useMutationObserver/#is-server-side-rendering) utility
-and [useEventListener()](/blog/useEventListener/) hook to get the scroll data.
+I'm using my [isSSR](/blog/useMutationObserver/#is-server-side-rendering) utility,
+[getRefElement()](/blog/useMutationObserver/#get-ref-element) utility and
+[useEventListener()](/blog/useEventListener/) hook to get the scroll data.
 
 ```ts
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, RefObject } from 'react';
 import { throttle } from 'lodash';
-import { isSSR } from './utils';
-import { useEventListener } from './useEventListener';
+import { useEventListener } from './hooks';
+import { isSSR, getRefElement } from './utils';
 
 interface Scroll {
   y?: number;
-  direction?: 'up' | 'down';
+  x?: number;
+  direction?: 'up' | 'right' | 'down' | 'left';
 }
 
-export const useScroll = (wait: number = 250): Scroll => {
+interface UseScroll {
+  wait?: number;
+  element?: RefObject<Element> | Window | null;
+}
+
+export const useScroll = (options?: UseScroll): Scroll => {
+  const { wait, element } = {
+    wait: 250,
+    element: isSSR ? undefined : window,
+    ...options
+  };
+
+  const getScrollOffset = useCallback(
+    (direction: 'y' | 'x') => {
+      const target = getRefElement(element);
+
+      if (isSSR || !target) {
+        return undefined;
+      }
+
+      if ('window' in target) {
+        return direction === 'y' ? target.pageYOffset : target.pageXOffset;
+      }
+
+      if ('nodeType' in target) {
+        return direction === 'y' ? target.scrollTop : target.scrollLeft;
+      }
+    },
+    [element]
+  );
+
   const [scroll, setScroll] = useState<Scroll>({
-    y: isSSR ? undefined : window.pageYOffset,
+    y: getScrollOffset('y'),
+    x: getScrollOffset('x'),
     direction: undefined
   });
 
-  const scrollFunc = useCallback(() => {
-    const { pageYOffset } = window;
-    const setDirection = (prev: Scroll) => {
-      if (prev.y !== undefined) {
-        return prev.y > pageYOffset ? 'up' : 'down';
+  const setDirection = useCallback(
+    ({ y, x }: Scroll) => {
+      const yOffset = getScrollOffset('y');
+      const xOffset = getScrollOffset('x');
+
+      if (
+        y !== undefined &&
+        x !== undefined &&
+        yOffset !== undefined &&
+        xOffset !== undefined
+      ) {
+        if (y > yOffset) return 'up';
+        if (y < yOffset) return 'down';
+        if (x > xOffset) return 'left';
+        if (x < xOffset) return 'right';
       }
-    };
+    },
+    [getScrollOffset]
+  );
+
+  const scrollFunc = useCallback(() => {
+    const yOffset = getScrollOffset('y');
+    const xOffset = getScrollOffset('x');
 
     setScroll((prev) => ({
-      y: pageYOffset,
+      y: yOffset,
+      x: xOffset,
       direction: setDirection(prev)
     }));
-  }, []);
+  }, [getScrollOffset, setDirection]);
 
   const handleScroll = useMemo(
     () =>
@@ -79,6 +129,7 @@ export const useScroll = (wait: number = 250): Scroll => {
   useEventListener({
     type: 'scroll',
     listener: handleScroll,
+    element,
     options: { passive: true }
   });
 
@@ -92,17 +143,21 @@ On scroll we `console.log()` its direction and amount, and [throttle](https://lo
 it with a 500 milliseconds wait timeout.
 
 ```tsx
-import React, { useEffect } from 'react';
-import { useScroll } from './useScroll';
+import React, { useEffect, useRef } from 'react';
+import { useScroll } from './hooks';
 
 const Component = () => {
-  const scroll = useScroll(500);
+  const ref = useRef(null);
+  const scroll = useScroll({
+    wait: 500,
+    element: ref
+  });
 
   useEffect(() => {
     console.log(scroll);
   }, [scroll]);
 
-  return null;
+  return <div ref={ref} />;
 };
 
 export default Component;

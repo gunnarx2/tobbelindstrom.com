@@ -4,8 +4,8 @@ import { useScroll } from 'hooks';
 import styles from './UseScroll.module.scss';
 
 const UseScroll = () => {
-  const scrollWait0 = useScroll(0);
-  const scrollWait500 = useScroll(500);
+  const scrollWait0 = useScroll({ wait: 0 });
+  const scrollWait500 = useScroll({ wait: 500 });
 
   const renderScrollAmount = useCallback(
     (scrollAmount?: number) => scrollAmount && Math.round(scrollAmount),

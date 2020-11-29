@@ -14,7 +14,7 @@ const TrapFocus = ({ onClose }: Props) => {
   const initialFocusRef = useRef(null);
   const trapRef = useTrapFocus({
     includeContainer: true,
-    initialFocus: initialFocusRef,
+    initialFocus: initialFocusRef.current,
     returnFocus: true,
     updateNodes: false
   });

@@ -33,7 +33,7 @@ resize events.
 ```ts
 import { useMemo } from 'react';
 import { debounce } from 'lodash';
-import { useEventListener } from './useEventListener';
+import { useEventListener } from './hooks';
 
 export const useResize = (
   callback: (event: Event) => void,
@@ -62,7 +62,7 @@ it with a 500 milliseconds wait timeout.
 
 ```tsx
 import React from 'react';
-import { useResize } from './useResize';
+import { useResize } from './hooks';
 
 const Component = () => {
   useResize((event) => {

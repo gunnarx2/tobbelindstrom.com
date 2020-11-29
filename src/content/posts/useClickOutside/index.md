@@ -35,24 +35,26 @@ import { UseClickOutside } from 'components/ui/blog';
 
 Trigger a callback when the user clicks outside of a defined element.
 
-I'm using my [useEventListener()](/blog/useEventListener/) hook to listen for
-click event.
+I'm using my [useEventListener()](/blog/useEventListener/) hook and
+[getRefElement()](/blog/useMutationObserver/#get-ref-element) utility to listen
+for click events.
 
 ```ts
 import { useCallback, RefObject } from 'react';
-import { useEventListener } from './useEventListener';
+import { useEventListener } from './hooks';
+import { getRefElement } from './utils';
 
 export const useClickOutside = (
-  ref: RefObject<Element>,
+  element: RefObject<Element> | null,
   callback: (event: MouseEvent) => void
 ): void => {
   const handleClick = useCallback(
     (event) => {
-      if (!ref.current?.contains(event.target)) {
+      if (!getRefElement(element)?.contains(event.target)) {
         callback(event);
       }
     },
-    [callback, ref]
+    [callback, element]
   );
 
   useEventListener({
@@ -60,6 +62,7 @@ export const useClickOutside = (
     listener: handleClick
   });
 };
+
 ```
 
 ## Usage
@@ -68,7 +71,7 @@ When a user clicks outside of the defined `ref` element we `console.log()` its e
 
 ```tsx
 import React, { useRef } from 'react';
-import { useClickOutside } from './useClickOutside';
+import { useClickOutside } from './hooks';
 
 const Component = () => {
   const ref = useRef(null);

@@ -26,11 +26,11 @@ to watch for changes being made to a defined target. Target element supports bot
 `refs` and `query selectors`.
 
 I'm using my [isSSR](#is-server-side-rendering) and
-[getElement()](#get-element) utility.
+[getRefElement()](#get-ref-element) utility.
 
 ```ts
-import { useEffect, useMemo, RefObject } from 'react';
-import { isSSR, getElement } from './utils';
+import { useEffect, useMemo } from 'react';
+import { isSSR, getRefElement } from './utils';
 
 interface Props {
   target?: RefObject<Element> | Element | Node | null;
@@ -43,7 +43,6 @@ export const useMutationObserver = ({
   options = {},
   callback
 }: Props): void => {
-  const getTarget = useMemo(() => getElement(target), [target]);
   const observer = useMemo(
     () =>
       !isSSR
@@ -55,23 +54,23 @@ export const useMutationObserver = ({
   );
 
   useEffect(() => {
-    if (observer && getTarget) {
-      observer.observe(getTarget, options);
+    const element = getRefElement(target);
+
+    if (observer && element) {
+      observer.observe(element, options);
       return () => observer.disconnect();
     }
-  }, [getTarget, observer, options]);
+  }, [target, observer, options]);
 };
 ```
 
 ## Usage
 
-Every time `aria-hidden` changes we'll `console.log()` its value. I'm using the
-[getElement()](#get-element) utility.
+Every time `aria-hidden` changes we'll `console.log()` its value.
 
 ```tsx
-import React, { useRef, useCallback, RefObject } from 'react';
-import { getElement } from './utils';
-import { useMutationObserver } from './useMutationObserver';
+import React, { useRef, useCallback } from 'react';
+import { useMutationObserver } from './hooks';
 
 const Component = () => {
   const ref = useRef(null);
@@ -86,7 +85,7 @@ const Component = () => {
         target: Element | null;
       }) => {
         if (type === 'attributes') {
-          console.log(getElement(target)?.getAttribute('aria-hidden'));
+          console.log(target?.getAttribute('aria-hidden'));
         }
       }
     );
@@ -108,18 +107,23 @@ export default Component;
 
 Throughout this weeks hooks I'll reuse two utilities.
 
-### Get element
+### Get ref element
 
-With this utility we can pass `refs` and `query selectors`, and it will return
+With this utility we can pass `refs` and extendable elements, and it will return
 the element for us.
 
 ```ts
 import { RefObject } from 'react';
 
-export const getElement = <T = undefined>(
-  element?: RefObject<Element> | Element | null | T
-): Element | null | undefined | T =>
-  element && 'current' in element ? element.current : element;
+export const getRefElement = <T>(
+  element?: RefObject<Element> | T
+): Element | T | undefined | null => {
+  if (element && 'current' in element) {
+    return element.current;
+  }
+
+  return element;
+};
 ```
 
 ### Is Server-Side Rendering

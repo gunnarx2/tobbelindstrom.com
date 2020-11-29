@@ -41,26 +41,30 @@ import {
   useState,
   useMemo,
   useRef,
-  MutableRefObject,
-  RefObject
+  MutableRefObject
 } from 'react';
 import { tabbable, FocusableElement } from 'tabbable';
-import { useEventListener } from './useEventListener';
+import { useEventListener } from './hooks';
 
 type Node = HTMLDivElement | null;
 
-interface Options {
+interface UseTrapFocus {
   includeContainer?: boolean;
-  initialFocus?: 'container' | RefObject<Node> | null;
+  initialFocus?: 'container' | Node;
   returnFocus?: boolean;
   updateNodes?: boolean;
 }
 
-export const useTrapFocus = (options?: Options): MutableRefObject<Node> => {
+export const useTrapFocus = (
+  options?: UseTrapFocus
+): MutableRefObject<Node> => {
   const node = useRef<Node>(null);
-  const { includeContainer, initialFocus, returnFocus, updateNodes } = useMemo<
-    Options
-  >(
+  const {
+    includeContainer,
+    initialFocus,
+    returnFocus,
+    updateNodes
+  } = useMemo<UseTrapFocus>(
     () => ({
       includeContainer: false,
       initialFocus: null,
@@ -77,9 +81,9 @@ export const useTrapFocus = (options?: Options): MutableRefObject<Node> => {
     if (initialFocus === 'container') {
       node.current?.focus();
     } else {
-      initialFocus?.current?.focus();
+      initialFocus?.focus();
     }
-  }, [initialFocus, node]);
+  }, [initialFocus]);
 
   const updateTabbableNodes = useCallback(() => {
     const { current } = node;
@@ -107,12 +111,12 @@ export const useTrapFocus = (options?: Options): MutableRefObject<Node> => {
 
   const handleKeydown = useCallback(
     (event) => {
-      const { keyCode, shiftKey } = event;
+      const { key, keyCode, shiftKey } = event;
 
       let getTabbableNodes = tabbableNodes;
       if (updateNodes) getTabbableNodes = updateTabbableNodes();
 
-      if (keyCode === 9 && getTabbableNodes.length) {
+      if ((key === 'Tab' || keyCode === 9) && getTabbableNodes.length) {
         const firstNode = getTabbableNodes[0];
         const lastNode = getTabbableNodes[getTabbableNodes.length - 1];
         const { activeElement } = document;
@@ -151,7 +155,7 @@ Here you can see a stripped version of the showcase.
 
 ```tsx
 import React, { useRef } from 'react';
-import { useTrapFocus } from './useTrapFocus';
+import { useTrapFocus } from './hooks';
 
 const Component = () => {
   const initialFocusRef = useRef(null);
@@ -159,7 +163,7 @@ const Component = () => {
     // Incudes container (trapRef) in the tabbable nodes
     includeContainer: true,
     // Can also be set as 'container' which will focus trapRef
-    initialFocus: initialFocusRef,
+    initialFocus: initialFocusRef.current,
     // Return focus to the element that had focus before trapped
     returnFocus: true,
     // Update nodes on each tab, can be useful if tabbable nodes

@@ -20,8 +20,8 @@
     "eslint:fix": "eslint '**/*.{js,tsx,ts}' --fix",
     "stylelint:report": "stylelint '**/*.scss'",
     "stylelint:fix": "stylelint '**/*.scss' --fix",
-    "markdown:report": "markdownlint '**/*.md' --config=./.markdownlint.json --ignore-path=./.markdownlintignore",
-    "markdown:fix": "yarn markdown:report --fix"
+    "markdownlint:report": "markdownlint '**/*.md' --config=./.markdownlint.js",
+    "markdownlint:fix": "yarn markdownlint:report --fix"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.18",
@@ -65,6 +65,10 @@
     "tabbable": "^5.1.2"
   },
   "devDependencies": {
+    "@gunnarx2/eslint-config-eslint-react": "^4.0.0",
+    "@gunnarx2/markdownlint": "^4.0.0",
+    "@gunnarx2/prettier": "^4.0.1",
+    "@gunnarx2/stylelint": "^4.0.0",
     "@types/classnames": "^2.2.10",
     "@types/lodash": "^4.14.161",
     "@types/mdx-js__react": "^1.5.3",
@@ -78,12 +82,12 @@
     "babel-eslint": "^10.1.0",
     "babel-preset-gatsby": "^0.5.12",
     "cypress": "^5.4.0",
-    "cypress-axe": "^0.8.1",
+    "cypress-axe": "^0.10.0",
     "cypress-plugin-tab": "^1.0.5",
     "eslint": "^7.11.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.12.0",
-    "eslint-config-react-app": "^5.2.1",
+    "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-flowtype": "^5.2.0",

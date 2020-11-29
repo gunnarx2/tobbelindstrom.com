@@ -1,33 +1,82 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, RefObject } from 'react';
 import { throttle } from 'lodash';
 
 import { useEventListener } from 'hooks';
-import { isSSR } from 'utils';
+import { isSSR, getRefElement } from 'utils';
 
 interface Scroll {
   y?: number;
-  direction?: 'up' | 'down';
+  x?: number;
+  direction?: 'up' | 'right' | 'down' | 'left';
 }
 
-export const useScroll = (wait: number = 250): Scroll => {
+interface UseScroll {
+  wait?: number;
+  element?: RefObject<Element> | Window | null;
+}
+
+export const useScroll = (options?: UseScroll): Scroll => {
+  const { wait, element } = {
+    wait: 250,
+    element: isSSR ? undefined : window,
+    ...options
+  };
+
+  const getScrollOffset = useCallback(
+    (direction: 'y' | 'x') => {
+      const target = getRefElement(element);
+
+      if (isSSR || !target) {
+        return undefined;
+      }
+
+      if ('window' in target) {
+        return direction === 'y' ? target.pageYOffset : target.pageXOffset;
+      }
+
+      if ('nodeType' in target) {
+        return direction === 'y' ? target.scrollTop : target.scrollLeft;
+      }
+    },
+    [element]
+  );
+
   const [scroll, setScroll] = useState<Scroll>({
-    y: isSSR ? undefined : window.pageYOffset,
+    y: getScrollOffset('y'),
+    x: getScrollOffset('x'),
     direction: undefined
   });
 
-  const scrollFunc = useCallback(() => {
-    const { pageYOffset } = window;
-    const setDirection = (prev: Scroll) => {
-      if (prev.y !== undefined) {
-        return prev.y > pageYOffset ? 'up' : 'down';
+  const setDirection = useCallback(
+    ({ y, x }: Scroll) => {
+      const yOffset = getScrollOffset('y');
+      const xOffset = getScrollOffset('x');
+
+      if (
+        y !== undefined &&
+        x !== undefined &&
+        yOffset !== undefined &&
+        xOffset !== undefined
+      ) {
+        if (y > yOffset) return 'up';
+        if (y < yOffset) return 'down';
+        if (x > xOffset) return 'left';
+        if (x < xOffset) return 'right';
       }
-    };
+    },
+    [getScrollOffset]
+  );
+
+  const scrollFunc = useCallback(() => {
+    const yOffset = getScrollOffset('y');
+    const xOffset = getScrollOffset('x');
 
     setScroll((prev) => ({
-      y: pageYOffset,
+      y: yOffset,
+      x: xOffset,
       direction: setDirection(prev)
     }));
-  }, []);
+  }, [getScrollOffset, setDirection]);
 
   const handleScroll = useMemo(
     () =>
@@ -38,6 +87,7 @@ export const useScroll = (wait: number = 250): Scroll => {
   useEventListener({
     type: 'scroll',
     listener: handleScroll,
+    element,
     options: { passive: true }
   });
 

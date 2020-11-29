@@ -1,6 +1,6 @@
 import { useEffect, useMemo, RefObject } from 'react';
 
-import { isSSR, getElement } from 'utils';
+import { isSSR, getRefElement } from 'utils';
 
 interface Props {
   target?: RefObject<Element> | Element | Node | null;
@@ -13,7 +13,6 @@ export const useMutationObserver = ({
   options = {},
   callback
 }: Props): void => {
-  const getTarget = useMemo(() => getElement(target), [target]);
   const observer = useMemo(
     () =>
       !isSSR
@@ -25,9 +24,11 @@ export const useMutationObserver = ({
   );
 
   useEffect(() => {
-    if (observer && getTarget) {
-      observer.observe(getTarget, options);
+    const element = getRefElement(target);
+
+    if (observer && element) {
+      observer.observe(element, options);
       return () => observer.disconnect();
     }
-  }, [getTarget, observer, options]);
+  }, [target, observer, options]);
 };

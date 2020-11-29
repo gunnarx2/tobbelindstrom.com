@@ -19,11 +19,11 @@ Recommended node version is defined in `.nvmrc`.
 - `yarn prettier:fix` - Fix any [Prettier](https://prettier.io/) issues
 - `yarn eslint:report` - Report any [ESLint](https://eslint.org/) issues
 - `yarn eslint:fix` - Fix any [ESLint](https://eslint.org/) issues
-- `yarn stylelint:report` - Report any [stylelint](https://stylelint.io/) issues
-- `yarn stylelint:fix` - Fix any [stylelint](https://stylelint.io/) issues
-- `yarn markdown:report` - Report any [markdownlint](https://github.com/DavidAnson/markdownlint/)
+- `yarn stylelint:report` - Report any [Stylelint](https://stylelint.io/) issues
+- `yarn stylelint:fix` - Fix any [Stylelint](https://stylelint.io/) issues
+- `yarn markdownlint:report` - Report any [Markdownlint](https://github.com/DavidAnson/markdownlint/)
   issues
-- `yarn markdown:fix` - Fix any [markdownlint](https://github.com/DavidAnson/markdownlint/)
+- `yarn markdownlint:fix` - Fix any [Markdownlint](https://github.com/DavidAnson/markdownlint/)
   issues
 
 ## Environment variables
