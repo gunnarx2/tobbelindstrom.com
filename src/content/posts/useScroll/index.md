@@ -58,11 +58,14 @@ interface UseScroll {
 }
 
 export const useScroll = (options?: UseScroll): Scroll => {
-  const { wait, element } = {
-    wait: 250,
-    element: isSSR ? undefined : window,
-    ...options
-  };
+  const { wait, element } = useMemo<UseScroll>(
+    () => ({
+      wait: 250,
+      element: isSSR ? undefined : window,
+      ...options
+    }),
+    [options]
+  );
 
   const getScrollOffset = useCallback(
     (direction: 'y' | 'x') => {
