@@ -87,6 +87,6 @@ export const onRenderBody = ({
       aria-hidden="true"
       role="complementary"
     />,
-    <div key="modal" id="modal" />
+    <div key="modal" id="modal" role="dialog" aria-label="modal" />
   ]);
 };
