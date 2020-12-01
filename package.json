@@ -21,7 +21,8 @@
     "stylelint:report": "stylelint '**/*.scss'",
     "stylelint:fix": "stylelint '**/*.scss' --fix",
     "markdownlint:report": "markdownlint '**/*.md' --config=./.markdownlint.js",
-    "markdownlint:fix": "yarn markdownlint:report --fix"
+    "markdownlint:fix": "yarn markdownlint:report --fix",
+    "typescript:report": "tsc --noEmit"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.18",

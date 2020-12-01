@@ -25,6 +25,7 @@ Recommended node version is defined in `.nvmrc`.
   issues
 - `yarn markdownlint:fix` - Fix any [Markdownlint](https://github.com/DavidAnson/markdownlint/)
   issues
+- `yarn typescript:report` - Report any TypeScript issues
 
 ## Environment variables
 
