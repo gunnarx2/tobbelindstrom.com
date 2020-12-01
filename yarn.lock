@@ -3095,7 +3095,7 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
 
-axe-core@^4.0.2:
+axe-core@^4.0.2, axe-core@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.1.1.tgz#70a7855888e287f7add66002211a423937063eaf"
   integrity sha512-5Kgy8Cz6LPC9DJcNb3yjAXTu3XihQgEdnIg50c//zOC/MyLP0Clg+Y8Sh9ZjjnvBrDZU4DgXS9C3T9r4/scGZQ==
@@ -5108,10 +5108,10 @@ cyclist@^1.0.1:
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
   integrity sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=
 
-cypress-axe@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/cypress-axe/-/cypress-axe-0.10.0.tgz#fc3536d7da47ff90f9665cf8fbf8e820e09202b9"
-  integrity sha512-McmUZl34tD+DFEEvQYsmszMahsSEKYoNb9lJpIUHHhmcFPEjStCFFxmCmWkfRBh/FkWJ+8WoCHkcl663+w3E/w==
+cypress-axe@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/cypress-axe/-/cypress-axe-0.12.0.tgz#2549a55f0a5c8006de240a85a19c8ecf2ce3abf9"
+  integrity sha512-NF/bMxU6KaxhSqfJysBtX3Buw92aBgct1kR+eqCTwoU1bmqMjAzxxRZY5UaWTxmxQeVRb7Bv4yXNNzu0JDkK/g==
 
 cypress-plugin-tab@^1.0.5:
   version "1.0.5"
@@ -5120,10 +5120,10 @@ cypress-plugin-tab@^1.0.5:
   dependencies:
     ally.js "^1.4.1"
 
-cypress@^5.4.0:
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/cypress/-/cypress-5.6.0.tgz#6781755c3ddfd644ce3179fcd7389176c0c82280"
-  integrity sha512-cs5vG3E2JLldAc16+5yQxaVRLLqMVya5RlrfPWkC72S5xrlHFdw7ovxPb61s4wYweROKTyH01WQc2PFzwwVvyQ==
+cypress@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/cypress/-/cypress-6.0.1.tgz#86857ca2f527c3723575737deab42fd8f2a209df"
+  integrity sha512-3xtQZ0YM65soLgKQUgn2wg2IbWsM6A2yBg6L4RF31mZHr5LNKdO2/9sgiwxEVMKu2C2m6+IQ75zHP41kZP5rPg==
   dependencies:
     "@cypress/listr-verbose-renderer" "^0.4.1"
     "@cypress/request" "^2.88.5"

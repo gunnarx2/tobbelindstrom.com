@@ -17,7 +17,7 @@ describe('Accessibility tests', () => {
     it(`Archive page for ${width}x${height}`, () => {
       cy.viewport(width, height);
       cy.visit('/').get('main').injectAxe();
-      cy.checkA11y(null, a11yOptions);
+      cy.checkA11y(undefined, a11yOptions);
     });
 
     it(`Post page for ${width}x${height}`, () => {
@@ -26,7 +26,7 @@ describe('Accessibility tests', () => {
         if (Array.isArray(posts)) {
           posts.forEach((post: string) => {
             cy.visit(`/blog/${post}/`).get('main').injectAxe();
-            cy.checkA11y(null, a11yOptions);
+            cy.checkA11y(undefined, a11yOptions);
           });
         }
       });
@@ -35,14 +35,14 @@ describe('Accessibility tests', () => {
     it(`Not found page for ${width}x${height}`, () => {
       cy.viewport(width, height);
       cy.visit('/404/').get('main').injectAxe();
-      cy.checkA11y(null, a11yOptions);
+      cy.checkA11y(undefined, a11yOptions);
     });
 
     it(`Floating actions for ${width}x${height}`, () => {
       cy.viewport(width, height);
       cy.get(`[data-test="${Test.TOGGLE}"]`).as('toggle');
-      cy.get('@toggle').click().checkA11y(null, a11yOptions);
-      cy.get('@toggle').click().checkA11y(null, a11yOptions);
+      cy.get('@toggle').click().checkA11y(undefined, a11yOptions);
+      cy.get('@toggle').click().checkA11y(undefined, a11yOptions);
     });
   });
 });
