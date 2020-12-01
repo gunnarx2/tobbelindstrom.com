@@ -7,6 +7,7 @@
   background-color: var(--color-theta);
   border-radius: map-get($spacings, sm);
   padding: map-get($spacings, lg);
+  backface-visibility: hidden;
   transition: map-get($durations, fast) map-get($easings, ease);
   transition-property: box-shadow, transform, background-color, color;
 
