@@ -1231,12 +1231,12 @@
     is-promise "4.0.0"
     tslib "~2.0.1"
 
-"@gunnarx2/eslint-config-eslint-react@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@gunnarx2/eslint-config-eslint-react/-/eslint-config-eslint-react-4.0.0.tgz#e7a40d858ca9ad1cff3f3015329cebd71fe3f12c"
-  integrity sha512-tWB5Y6+/gaS1RLIS6C4fQgdzWl+DcimGGOD3TO8zKix9Fqkc3F4GtcGbFRkiFKKNLPD3p4inpbsi+7SSsAKq/g==
+"@gunnarx2/eslint-config-eslint-react@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@gunnarx2/eslint-config-eslint-react/-/eslint-config-eslint-react-4.0.2.tgz#57b7cabc6a82b7adeca1640b3b4d8469c1fcc630"
+  integrity sha512-uZoy0a7UpzAWCMLa3XkoDyrKT6gZj9TGUyKDIUVyJWoivQLy2xoYo9eJOcjHinPDj6WC7rcxs4ROg8vZtnSyrw==
   dependencies:
-    "@gunnarx2/prettier" "^4.0.1"
+    "@gunnarx2/prettier" "^4.0.2"
 
 "@gunnarx2/markdownlint@^4.0.0":
   version "4.0.0"
@@ -1247,6 +1247,11 @@
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@gunnarx2/prettier/-/prettier-4.0.1.tgz#608b1c1c679f9f4235beaa4b0b471b3ad134de55"
   integrity sha512-Aw2KMpHJA+AzvWBXaaa+XQgPsvRayJqAX9dZzHvESy2wMJtdoLfbtAlqqGU32h3qvLmgogBsE31A6jIxLE3b6w==
+
+"@gunnarx2/prettier@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@gunnarx2/prettier/-/prettier-4.0.2.tgz#ed28257e303973fb42d528f7e804d0840688afd4"
+  integrity sha512-dtnD4UGjO4AKSyCeQ4dMdKQGx7oSOVozEG0egso9X6d/wJVdWwcKM79SR2Y4YydcnlmyUVyS/raVB0P1R5Ar5g==
 
 "@gunnarx2/stylelint@^4.0.0":
   version "4.0.0"
