@@ -12,7 +12,7 @@
     color: var(--color-primary-darken);
     box-shadow: var(--color-primary-darken) 0 -2px 0 0 inset;
 
-    @media (hover:none), (hover:on-demand) {
+    @media (hover: none), (hover: on-demand) {
       box-shadow: var(--color-primary) 0 -2px 0 0 inset;
       color: var(--color-primary);
     }

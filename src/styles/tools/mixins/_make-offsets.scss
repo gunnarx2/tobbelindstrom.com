@@ -1,4 +1,9 @@
-@mixin generate-offsets($action, $fractions, $breakpoint: false, $property: '') {
+@mixin generate-offsets(
+  $action,
+  $fractions,
+  $breakpoint: false,
+  $property: ''
+) {
   $breakpoint-class: '';
   $class: $action + '-';
 
@@ -23,7 +28,12 @@
   @if ($breakpoints) {
     @each $breakpoint-key, $breakpoint-value in $breakpoints {
       @include respond-to($breakpoint-key) {
-        @include generate-offsets($action, $fractions, $breakpoint-key, $property);
+        @include generate-offsets(
+          $action,
+          $fractions,
+          $breakpoint-key,
+          $property
+        );
       }
     }
   }

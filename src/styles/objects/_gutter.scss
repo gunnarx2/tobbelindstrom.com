@@ -5,6 +5,16 @@ $use-gutter: false;
     left: left,
     bottom: bottom
   );
-  $gutter-spacings: map-merge($spacings, ( clear: 0 ));
-  @include make-gutters('gutter', $gutter-spacings, $gutter-sides, $breakpoints);
+  $gutter-spacings: map-merge(
+    $spacings,
+    (
+      clear: 0
+    )
+  );
+  @include make-gutters(
+    'gutter',
+    $gutter-spacings,
+    $gutter-sides,
+    $breakpoints
+  );
 }

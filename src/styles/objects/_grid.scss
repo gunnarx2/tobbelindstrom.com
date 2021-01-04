@@ -88,7 +88,8 @@ $use-grid: false;
   }
 
   // Fill items or item
-  .grid--fill .grid__item:not([class*='grid__item--width']):not([class*='grid__item--fixed']),
+  .grid--fill
+    .grid__item:not([class*='grid__item--width']):not([class*='grid__item--fixed']),
   .grid__item--fill {
     flex-grow: 1;
     flex-basis: 0;
@@ -120,12 +121,7 @@ $use-grid: false;
     '11/12': 11/12,
     '12/12': 12/12
   );
-  @include make-offsets(
-    'grid__item--width',
-    $fractions,
-    $breakpoints,
-    'width'
-  );
+  @include make-offsets('grid__item--width', $fractions, $breakpoints, 'width');
   @include make-offsets(
     'grid__item--offset',
     $fractions,

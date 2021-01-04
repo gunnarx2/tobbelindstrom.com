@@ -88,7 +88,8 @@ blockquote {
   $border-width: 4px;
   position: relative;
   font-style: italic;
-  padding: map-get($spacings, md) map-get($spacings, lg) map-get($spacings, md) calc(#{map-get($spacings, lg)} + #{$border-width});
+  padding: map-get($spacings, md) map-get($spacings, lg) map-get($spacings, md)
+    calc(#{map-get($spacings, lg)} + #{$border-width});
 
   > *:last-child {
     margin-bottom: 0;
@@ -117,7 +118,7 @@ a,
 area,
 button,
 [role='button'],
-input:not([type=range]),
+input:not([type='range']),
 label,
 select,
 summary,

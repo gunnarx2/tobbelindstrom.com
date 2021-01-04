@@ -25,7 +25,8 @@
   top: 0;
   left: 0;
   right: 0;
-  box-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px -2px, rgba(0, 0, 0, 0.25) 0 3px 4px 0, rgba(0, 0, 0, 0.125) 0 1px 8px 0;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px -2px, rgba(0, 0, 0, 0.25) 0 3px 4px 0,
+    rgba(0, 0, 0, 0.125) 0 1px 8px 0;
   border-radius: map-get($spacings, sm);
   overflow: hidden;
 
@@ -34,7 +35,7 @@
     right: auto;
     bottom: 0;
   }
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -80,7 +81,7 @@
   :global(body.is-tabbing) &:focus {
     color: var(--color-beta);
 
-    @media (hover:none), (hover:on-demand) {
+    @media (hover: none), (hover: on-demand) {
       color: var(--color-epsilon);
     }
   }

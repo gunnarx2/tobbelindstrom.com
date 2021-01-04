@@ -14,9 +14,10 @@
   :global(body.dark-theme) & {
     &:hover,
     &:focus {
-      box-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px -2px, rgba(0, 0, 0, 0.25) 0 3px 4px 0, rgba(0, 0, 0, 0.125) 0 1px 8px 0;
+      box-shadow: rgba(0, 0, 0, 0.5) 0 3px 3px -2px,
+        rgba(0, 0, 0, 0.25) 0 3px 4px 0, rgba(0, 0, 0, 0.125) 0 1px 8px 0;
 
-      @media (hover:none), (hover:on-demand) {
+      @media (hover: none), (hover: on-demand) {
         box-shadow: none;
       }
     }
@@ -29,7 +30,7 @@
     &:focus {
       box-shadow: rgba(47, 39, 61, 0.1) 0 6px 10px;
 
-      @media (hover:none), (hover:on-demand) {
+      @media (hover: none), (hover: on-demand) {
         box-shadow: rgba(47, 39, 61, 0.05) 0 3px 10px;
       }
     }
@@ -40,7 +41,7 @@
   :global(body.is-tabbing) &:focus {
     transform: translateY(-3px);
 
-    @media (hover:none), (hover:on-demand) {
+    @media (hover: none), (hover: on-demand) {
       transform: translateY(0);
     }
   }

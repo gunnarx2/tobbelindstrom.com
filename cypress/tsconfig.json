@@ -3,13 +3,7 @@
   "compilerOptions": {
     "isolatedModules": false,
     "skipLibCheck": true,
-    "types": [
-      "cypress",
-      "cypress-axe",
-      "node"
-    ]
+    "types": ["cypress", "cypress-axe", "node"]
   },
-  "include": [
-    "**/*.ts"
-  ]
+  "include": ["**/*.ts"]
 }

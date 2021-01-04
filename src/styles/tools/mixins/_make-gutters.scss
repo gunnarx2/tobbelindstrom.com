@@ -12,7 +12,8 @@
         margin-#{$side-value}: -$size-value;
       }
 
-      .#{$class}-#{$side-key}-#{$size-key}#{$breakpoint-class} > .#{$class}__item {
+      .#{$class}-#{$side-key}-#{$size-key}#{$breakpoint-class}
+        > .#{$class}__item {
         padding-#{$side-value}: $size-value;
       }
     }

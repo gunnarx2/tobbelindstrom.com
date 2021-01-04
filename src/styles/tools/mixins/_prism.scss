@@ -44,7 +44,8 @@ body.light-theme {
       overflow: hidden;
       background-color: var(--prism-background-block);
       margin: 0 -#{$container-padding-sides} map-get($spacings, sm) * 1.33;
-      transition: background-color map-get($durations, fast) map-get($easings, ease);
+      transition: background-color map-get($durations, fast)
+        map-get($easings, ease);
 
       @include respond-to(sm) {
         border-radius: map-get($spacings, sm);
@@ -66,12 +67,14 @@ body.light-theme {
 
       &::before {
         left: 0;
-        box-shadow: inset var(--box-shadow-size) 0 var(--box-shadow-size) 0 var(--prism-background-block);
+        box-shadow: inset var(--box-shadow-size) 0 var(--box-shadow-size) 0
+          var(--prism-background-block);
       }
 
       &::after {
         right: 0;
-        box-shadow: inset calc(var(--box-shadow-size) * -1) 0 var(--box-shadow-size) 0 var(--prism-background-block);
+        box-shadow: inset calc(var(--box-shadow-size) * -1) 0
+          var(--box-shadow-size) 0 var(--prism-background-block);
       }
     }
 
@@ -81,7 +84,8 @@ body.light-theme {
       display: block;
       margin: 0 -#{$container-padding-sides};
       padding: 0 #{$container-padding-sides};
-      transition: background-color map-get($durations, fast) map-get($easings, ease);
+      transition: background-color map-get($durations, fast)
+        map-get($easings, ease);
     }
 
     code {
@@ -89,7 +93,8 @@ body.light-theme {
       padding: 0.15em 0.4em 0.25em;
       border-radius: 0.4em;
       @include get-font-styles(helsinki);
-      transition: background-color map-get($durations, fast) map-get($easings, ease);
+      transition: background-color map-get($durations, fast)
+        map-get($easings, ease);
     }
 
     pre {
@@ -99,12 +104,14 @@ body.light-theme {
 
       &::-webkit-scrollbar-thumb {
         background-color: var(--prism-scroll-thumb);
-        transition: background-color map-get($durations, fast) map-get($easings, ease);
+        transition: background-color map-get($durations, fast)
+          map-get($easings, ease);
       }
 
       &::-webkit-scrollbar-track {
         background-color: var(--prism-scroll-track);
-        transition: background-color map-get($durations, fast) map-get($easings, ease);
+        transition: background-color map-get($durations, fast)
+          map-get($easings, ease);
       }
 
       &::-webkit-scrollbar {

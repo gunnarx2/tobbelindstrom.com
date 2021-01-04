@@ -23,7 +23,7 @@ $button-sizes: map-get($spacings, xl) * 1.28;
   &:hover {
     border-color: var(--color-primary);
 
-    @media (hover:none), (hover:on-demand) {
+    @media (hover: none), (hover: on-demand) {
       border-color: var(--color-epsilon);
     }
   }
@@ -83,7 +83,7 @@ $button-sizes: map-get($spacings, xl) * 1.28;
     svg {
       fill: var(--color-primary);
 
-      @media (hover:none), (hover:on-demand) {
+      @media (hover: none), (hover: on-demand) {
         fill: var(--color-epsilon);
       }
     }

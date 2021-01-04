@@ -50,12 +50,14 @@
 
   &::before {
     left: 0;
-    box-shadow: inset var(--box-shadow-size) 0 var(--box-shadow-size) 0 var(--color-alpha);
+    box-shadow: inset var(--box-shadow-size) 0 var(--box-shadow-size) 0
+      var(--color-alpha);
   }
 
   &::after {
     right: 0;
-    box-shadow: inset calc(var(--box-shadow-size) * -1) 0 var(--box-shadow-size) 0 var(--color-alpha);
+    box-shadow: inset calc(var(--box-shadow-size) * -1) 0 var(--box-shadow-size)
+      0 var(--color-alpha);
   }
 }
 
@@ -155,7 +157,7 @@
   :global(body.is-tabbing) &:focus {
     fill: var(--color-primary);
 
-    @media (hover:none), (hover:on-demand) {
+    @media (hover: none), (hover: on-demand) {
       fill: var(--embla-arrows-color);
     }
   }
@@ -197,7 +199,8 @@
     width: 100%;
     height: 6px;
     border-radius: 3px;
-    transition: background-color map-get($durations, fast) map-get($easings, ease);
+    transition: background-color map-get($durations, fast)
+      map-get($easings, ease);
   }
 
   &.isSelected::after {
@@ -205,7 +208,7 @@
   }
 
   &.isSelected:hover::after {
-    @media (hover:none), (hover:on-demand) {
+    @media (hover: none), (hover: on-demand) {
       background-color: var(--color-primary) !important;
     }
   }
@@ -215,7 +218,7 @@
     &::after {
       background-color: var(--color-primary);
 
-      @media (hover:none), (hover:on-demand) {
+      @media (hover: none), (hover: on-demand) {
         background-color: var(--embla-dots-color);
       }
     }

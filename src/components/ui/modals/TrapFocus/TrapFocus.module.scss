@@ -74,7 +74,7 @@
   :global(body.is-tabbing) &:focus {
     fill: var(--color-primary);
 
-    @media (hover:none), (hover:on-demand) {
+    @media (hover: none), (hover: on-demand) {
       fill: var(--trap-focus-close);
     }
   }
