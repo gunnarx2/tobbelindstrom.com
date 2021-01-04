@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  font-family: map-get($font-families, source-sans-pro);
+  font-family: map-get($font-families, primary);
   line-height: map-get($line-heights, base);
   @include get-font-styles(kramfors);
   overflow-wrap: break-word;
@@ -111,7 +111,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: map-get($font-families, roboto-mono);
+  font-family: map-get($font-families, secondary);
 }
 
 a,

@@ -19,11 +19,11 @@ $font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
   'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
   'Segoe UI Symbol';
 $font-families: (
-  source-sans-pro: (
+  primary: (
     'Source Sans Pro',
     $font-stack
   ),
-  roboto-mono: (
+  secondary: (
     'Roboto Mono',
     monospace,
     $font-stack
